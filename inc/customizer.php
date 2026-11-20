@@ -154,9 +154,56 @@ function latvijai_customize_register( $wp_customize ) {
 	);
 
 	$add_field( 'preloader_enabled', __( 'Ieslēgt prelādētāju', 'latvijai-futura' ), 'latvijai_preloader', 'checkbox', 'latvijai_sanitize_checkbox' );
-	$add_field( 'preloader_image', __( 'Prelādētāja attēls', 'latvijai-futura' ), 'latvijai_preloader', 'url', 'esc_url_raw' );
-	$add_field( 'preloader_bg_color', __( 'Fona krāsa', 'latvijai-futura' ), 'latvijai_preloader', 'color', 'sanitize_hex_color' );
-	$add_field( 'preloader_bg_color_2', __( 'Fona otrā krāsa (gradientam)', 'latvijai-futura' ), 'latvijai_preloader', 'color', 'sanitize_hex_color' );
+	/*
+	 * Image and colour fields need their dedicated control classes. A plain
+	 * control with type "color" makes the customizer JS call wpColorPicker(),
+	 * which is not enqueued for plain controls — the resulting JS error stops
+	 * the whole customizer from initialising and hides every panel.
+	 */
+	$wp_customize->add_setting(
+		'preloader_image',
+		array(
+			'default'           => latvijai_default( 'preloader_image' ),
+			'sanitize_callback' => 'esc_url_raw',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize,
+			'preloader_image',
+			array(
+				'label'   => __( 'Prelādētāja attēls', 'latvijai-futura' ),
+				'section' => 'latvijai_preloader',
+			)
+		)
+	);
+
+	$color_fields = array(
+		'preloader_bg_color'   => __( 'Fona krāsa', 'latvijai-futura' ),
+		'preloader_bg_color_2' => __( 'Fona otrā krāsa (gradientam)', 'latvijai-futura' ),
+	);
+	foreach ( $color_fields as $id => $label ) {
+		$wp_customize->add_setting(
+			$id,
+			array(
+				'default'           => latvijai_default( $id ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				$id,
+				array(
+					'label'   => $label,
+					'section' => 'latvijai_preloader',
+				)
+			)
+		);
+	}
+
 	$add_field( 'preloader_duration', __( 'Minimālā rādīšanas laiks (ms)', 'latvijai-futura' ), 'latvijai_preloader', 'number', 'absint' );
 }
 add_action( 'customize_register', 'latvijai_customize_register' );
