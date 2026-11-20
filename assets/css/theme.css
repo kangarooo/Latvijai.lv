@@ -285,6 +285,9 @@ body.search-open {
 	z-index: 9999;
 	display: grid;
 	place-items: center;
+	/* Pack the spinner and text together in the middle instead of splitting
+	   the viewport into two equal rows. */
+	align-content: center;
 	background: var(--preloader-bg, linear-gradient(135deg, #0a0a11, #12050a));
 	transition:
 		opacity 0.5s var(--ease),
