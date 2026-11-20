@@ -1,0 +1,136 @@
+<?php
+/**
+ * Customizer settings for the front page and contact details.
+ *
+ * @package Latvijai_Futura
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Register theme customizer options.
+ *
+ * @param WP_Customize_Manager $wp_customize Customizer instance.
+ */
+function latvijai_customize_register( $wp_customize ) {
+	$wp_customize->add_panel(
+		'latvijai_home',
+		array(
+			'title'       => __( 'Latvijai — sākumlapa', 'latvijai-futura' ),
+			'description' => __( 'Sākumlapas teksts, statistika, fokusa projekts un kontakti.', 'latvijai-futura' ),
+			'priority'    => 30,
+		)
+	);
+
+	$sections = array(
+		'latvijai_hero'      => __( 'Hero sadaļa', 'latvijai-futura' ),
+		'latvijai_stats'     => __( 'Statistika', 'latvijai-futura' ),
+		'latvijai_spotlight' => __( 'Fokusa projekts', 'latvijai-futura' ),
+		'latvijai_cta'       => __( 'Aicinājums pievienoties', 'latvijai-futura' ),
+		'latvijai_contact'   => __( 'Kontakti un sociālie tīkli', 'latvijai-futura' ),
+	);
+
+	$priority = 10;
+	foreach ( $sections as $id => $title ) {
+		$wp_customize->add_section(
+			$id,
+			array(
+				'title'    => $title,
+				'panel'    => 'latvijai_home',
+				'priority' => $priority,
+			)
+		);
+		$priority += 10;
+	}
+
+	/**
+	 * Helper to register a field with theme defaults.
+	 *
+	 * @param string $id          Setting ID.
+	 * @param string $label       Control label.
+	 * @param string $section     Section ID.
+	 * @param string $type        Control type.
+	 * @param string $sanitize    Sanitize callback.
+	 * @param string $description Optional description.
+	 */
+	$add_field = function ( $id, $label, $section, $type = 'text', $sanitize = 'sanitize_text_field', $description = '' ) use ( $wp_customize ) {
+		$wp_customize->add_setting(
+			$id,
+			array(
+				'default'           => latvijai_default( $id ),
+				'sanitize_callback' => $sanitize,
+				'transport'         => 'refresh',
+			)
+		);
+
+		$wp_customize->add_control(
+			$id,
+			array(
+				'label'       => $label,
+				'section'     => $section,
+				'type'        => $type,
+				'description' => $description,
+			)
+		);
+	};
+
+	/* Hero */
+	$add_field( 'hero_eyebrow', __( 'Virsraksta uzraksts', 'latvijai-futura' ), 'latvijai_hero' );
+	$add_field( 'hero_title_1', __( 'Virsraksts — 1. rinda', 'latvijai-futura' ), 'latvijai_hero' );
+	$add_field( 'hero_title_2', __( 'Virsraksts — 2. rinda (kontūra)', 'latvijai-futura' ), 'latvijai_hero' );
+	$add_field( 'hero_title_3', __( 'Virsraksts — 3. rinda', 'latvijai-futura' ), 'latvijai_hero' );
+	$add_field( 'hero_text', __( 'Ievadteksts', 'latvijai-futura' ), 'latvijai_hero', 'textarea', 'sanitize_textarea_field' );
+	$add_field( 'hero_primary_label', __( 'Primārās pogas teksts', 'latvijai-futura' ), 'latvijai_hero' );
+	$add_field( 'hero_primary_url', __( 'Primārās pogas saite', 'latvijai-futura' ), 'latvijai_hero', 'url', 'esc_url_raw' );
+	$add_field( 'hero_secondary_label', __( 'Sekundārās pogas teksts', 'latvijai-futura' ), 'latvijai_hero' );
+	$add_field( 'hero_secondary_url', __( 'Sekundārās pogas saite', 'latvijai-futura' ), 'latvijai_hero', 'url', 'esc_url_raw' );
+	$add_field( 'hero_status', __( 'Statusa teksts', 'latvijai-futura' ), 'latvijai_hero' );
+
+	/* Stats */
+	for ( $i = 1; $i <= 4; $i++ ) {
+		$add_field(
+			'stat_' . $i . '_number',
+			/* translators: %d: stat number. */
+			sprintf( __( 'Statistika %d — skaitlis', 'latvijai-futura' ), $i ),
+			'latvijai_stats'
+		);
+		$add_field(
+			'stat_' . $i . '_label',
+			/* translators: %d: stat number. */
+			sprintf( __( 'Statistika %d — apzīmējums', 'latvijai-futura' ), $i ),
+			'latvijai_stats'
+		);
+	}
+
+	/* Spotlight */
+	$add_field( 'spotlight_eyebrow', __( 'Uzraksts', 'latvijai-futura' ), 'latvijai_spotlight' );
+	$add_field( 'spotlight_title', __( 'Projekta nosaukums', 'latvijai-futura' ), 'latvijai_spotlight' );
+	$add_field( 'spotlight_text', __( 'Apraksts', 'latvijai-futura' ), 'latvijai_spotlight', 'textarea', 'sanitize_textarea_field' );
+	$add_field( 'spotlight_label', __( 'Pogas teksts', 'latvijai-futura' ), 'latvijai_spotlight' );
+	$add_field( 'spotlight_url', __( 'Pogas saite', 'latvijai-futura' ), 'latvijai_spotlight', 'url', 'esc_url_raw' );
+
+	/* CTA */
+	$add_field( 'cta_eyebrow', __( 'Uzraksts', 'latvijai-futura' ), 'latvijai_cta' );
+	$add_field( 'cta_title', __( 'Virsraksts — 1. rinda', 'latvijai-futura' ), 'latvijai_cta' );
+	$add_field( 'cta_title_2', __( 'Virsraksts — 2. rinda (kontūra)', 'latvijai-futura' ), 'latvijai_cta' );
+	$add_field( 'cta_text', __( 'Apraksts', 'latvijai-futura' ), 'latvijai_cta', 'textarea', 'sanitize_textarea_field' );
+	$add_field( 'cta_primary_label', __( 'Primārās pogas teksts', 'latvijai-futura' ), 'latvijai_cta' );
+	$add_field( 'cta_primary_url', __( 'Primārās pogas saite', 'latvijai-futura' ), 'latvijai_cta', 'url', 'esc_url_raw' );
+	$add_field( 'cta_secondary_label', __( 'Sekundārās pogas teksts', 'latvijai-futura' ), 'latvijai_cta' );
+	$add_field( 'cta_secondary_url', __( 'Sekundārās pogas saite', 'latvijai-futura' ), 'latvijai_cta', 'url', 'esc_url_raw' );
+	$add_field( 'cta_meta', __( 'Apakšējais uzraksts', 'latvijai-futura' ), 'latvijai_cta' );
+
+	/* Contact */
+	$add_field( 'footer_text', __( 'Kājenes apraksts', 'latvijai-futura' ), 'latvijai_contact', 'textarea', 'sanitize_textarea_field' );
+	$add_field( 'contact_email', __( 'E-pasts', 'latvijai-futura' ), 'latvijai_contact', 'email', 'sanitize_email' );
+	$add_field( 'contact_location', __( 'Atrašanās vieta', 'latvijai-futura' ), 'latvijai_contact' );
+	$add_field( 'contact_coords', __( 'Koordinātas', 'latvijai-futura' ), 'latvijai_contact' );
+	$add_field( 'donate_url', __( 'Ziedošanas saite', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
+	$add_field( 'social_facebook', __( 'Facebook URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
+	$add_field( 'social_instagram', __( 'Instagram URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
+	$add_field( 'social_linkedin', __( 'LinkedIn URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
+	$add_field( 'social_youtube', __( 'YouTube URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
+}
+add_action( 'customize_register', 'latvijai_customize_register' );
