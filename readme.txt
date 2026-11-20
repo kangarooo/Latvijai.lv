@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -19,6 +19,7 @@ The theme is designed for Latvijai.lv — a place for ideas, initiatives and peo
 **Design**
 * A distinctly Latvian identity: flag accents, a stylized Lielvārdes josta ornament, the eleven Latvian diacritics, a five-region index and local place names.
 * Dark, editorial, futuristic layout with aurora glows, fine grid lines and animated particles.
+* A rotating hero constellation: two red dots and one white dot connected by an electric Latvian-flag gradient triangle.
 * Fluid hero, spotlight and footer typography that adapts to the available width.
 * Unbounded, Space Grotesk and JetBrains Mono typography, loaded from Google Fonts by default.
 * Responsive navigation, full-screen search and a mobile panel with keyboard support.
@@ -146,6 +147,13 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.3.0 =
+* Added a second red dot to the hero orb, so two red dots and one white dot now fly around the LV monogram.
+* Connected the dots with an animated electric triangle gradient in Latvian flag colours.
+* Added a travelling light pulse around the triangle and a soft breathing motion to the constellation.
+* The effect is disabled for visitors who prefer reduced motion.
+* Updated the 1200 × 900 theme screenshot.
 
 = 1.2.0 =
 * Added a stylized Lielvārdes josta ornament and a five-region line to the footer.
