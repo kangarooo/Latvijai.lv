@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -17,7 +17,7 @@ Latvijai Futura is a self-contained WordPress theme built for a public-projects 
 The theme is designed for Latvijai.lv — a place for ideas, initiatives and people working on a stronger Latvia. All interface and demo copy is in Latvian, and the theme is ready for translation.
 
 **Design**
-* A distinctly Latvian identity: a flag accent, regional index, local place names and copy rooted in Latvia.
+* A distinctly Latvian identity: flag accents, a stylized Lielvārdes josta ornament, the eleven Latvian diacritics, a five-region index and local place names.
 * Dark, editorial, futuristic layout with aurora glows, fine grid lines and animated particles.
 * Fluid hero, spotlight and footer typography that adapts to the available width.
 * Unbounded, Space Grotesk and JetBrains Mono typography, loaded from Google Fonts by default.
@@ -34,7 +34,7 @@ The theme is designed for Latvijai.lv — a place for ideas, initiatives and peo
 * Styled search results, empty states, pagination and 404 page.
 
 **Front page**
-The front page is built from sections for the hero, mission and statistics, the five regions of Latvia, featured projects, spotlight, journal and a call to action. The theme ships with thoughtful Latvian defaults, so the page is complete before any content is added.
+The front page is built from sections for the hero, mission and statistics, the five regions of Latvia, featured projects, spotlight, journal and a call to action. The region index pairs each region with its cities, the ticker carries Latvian place names, and the “Runā Latviski” spotlight displays the eleven Latvian diacritics. The footer closes with a stylized Lielvārdes josta band and the names of all five regions. The theme ships with thoughtful Latvian defaults, so the page is complete before any content is added.
 
 If no published projects exist, the featured-projects section shows three clearly labelled `Paraugs` demo cards. They disappear automatically as soon as a real project is published.
 
@@ -146,6 +146,14 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.2.0 =
+* Added a stylized Lielvārdes josta ornament and a five-region line to the footer.
+* Added the eleven Latvian diacritics to the “Runā Latviski” spotlight.
+* Expanded the ticker and region index with Latvian cities: Daugavpils, Liepāja, Jelgava, Valmiera, Rēzekne, Ventspils, Jūrmala and Cēsis.
+* Added a “Novadi” link to the fallback navigation and changed the third statistic to five regions.
+* Updated Latvian time labels, footer wording and section copy.
+* Updated the 1200 × 900 theme screenshot.
 
 = 1.1.0 =
 * Added the “Viena Latvija. Pieci reģioni.” identity section for Rīga, Kurzeme, Zemgale, Vidzeme and Latgale.

@@ -38,29 +38,37 @@ $topics = array(
 	__( 'Zemgale', 'latvijai-futura' ),
 	__( 'Vidzeme', 'latvijai-futura' ),
 	__( 'Latgale', 'latvijai-futura' ),
+	__( 'Daugavpils', 'latvijai-futura' ),
+	__( 'Liepāja', 'latvijai-futura' ),
+	__( 'Jelgava', 'latvijai-futura' ),
+	__( 'Valmiera', 'latvijai-futura' ),
+	__( 'Rēzekne', 'latvijai-futura' ),
+	__( 'Ventspils', 'latvijai-futura' ),
+	__( 'Jūrmala', 'latvijai-futura' ),
+	__( 'Cēsis', 'latvijai-futura' ),
 	__( 'Nākotne', 'latvijai-futura' ),
 );
 
 $latvia_regions = array(
 	array(
-		'name'      => __( 'Rīga', 'latvijai-futura' ),
-		'direction' => __( 'Centrs', 'latvijai-futura' ),
+		'name'   => __( 'Rīga', 'latvijai-futura' ),
+		'places' => __( 'Galvaspilsēta', 'latvijai-futura' ),
 	),
 	array(
-		'name'      => __( 'Kurzeme', 'latvijai-futura' ),
-		'direction' => __( 'Rietumi', 'latvijai-futura' ),
+		'name'   => __( 'Kurzeme', 'latvijai-futura' ),
+		'places' => __( 'Liepāja · Ventspils', 'latvijai-futura' ),
 	),
 	array(
-		'name'      => __( 'Zemgale', 'latvijai-futura' ),
-		'direction' => __( 'Dienvidi', 'latvijai-futura' ),
+		'name'   => __( 'Zemgale', 'latvijai-futura' ),
+		'places' => __( 'Jelgava · Bauska', 'latvijai-futura' ),
 	),
 	array(
-		'name'      => __( 'Vidzeme', 'latvijai-futura' ),
-		'direction' => __( 'Ziemeļi', 'latvijai-futura' ),
+		'name'   => __( 'Vidzeme', 'latvijai-futura' ),
+		'places' => __( 'Valmiera · Cēsis', 'latvijai-futura' ),
 	),
 	array(
-		'name'      => __( 'Latgale', 'latvijai-futura' ),
-		'direction' => __( 'Austrumi', 'latvijai-futura' ),
+		'name'   => __( 'Latgale', 'latvijai-futura' ),
+		'places' => __( 'Daugavpils · Rēzekne', 'latvijai-futura' ),
 	),
 );
 
@@ -81,7 +89,7 @@ $demo_projects = array(
 		'field'        => __( 'Izglītība', 'latvijai-futura' ),
 		'status'       => __( 'Izstrādē', 'latvijai-futura' ),
 		'status_class' => 'progress',
-		'location'     => __( 'Reģioni', 'latvijai-futura' ),
+		'location'     => __( 'Visa Latvija', 'latvijai-futura' ),
 		'excerpt'      => __( 'Praktiskas darbnīcas jauniešiem par tehnoloģijām, uzņēmējdarbību un kopienu veidošanu.', 'latvijai-futura' ),
 		'url'          => '#pieteikties',
 		'glyph'        => 'N',
@@ -150,9 +158,9 @@ $demo_projects = array(
 					<span class="orb-ring orb-ring--2"></span>
 					<span class="orb-ring orb-ring--3"></span>
 					<span class="orb-chip orb-chip--1"><?php esc_html_e( 'Kultūra', 'latvijai-futura' ); ?></span>
-					<span class="orb-chip orb-chip--2"><?php esc_html_e( 'Tehnoloģijas', 'latvijai-futura' ); ?></span>
+					<span class="orb-chip orb-chip--2"><?php esc_html_e( 'Valoda', 'latvijai-futura' ); ?></span>
 					<span class="orb-chip orb-chip--3"><?php esc_html_e( 'Daba', 'latvijai-futura' ); ?></span>
-					<span class="orb-chip orb-chip--4"><?php esc_html_e( 'Sabiedrība', 'latvijai-futura' ); ?></span>
+					<span class="orb-chip orb-chip--4"><?php esc_html_e( 'Novadi', 'latvijai-futura' ); ?></span>
 					<span class="orb-core">
 						<span class="orb-monogram">LV</span>
 					</span>
@@ -226,7 +234,7 @@ $demo_projects = array(
 		<div class="container">
 			<div class="latvia-panel reveal">
 				<div class="latvia-copy">
-					<p class="eyebrow"><span class="eyebrow-index">LV</span> <?php esc_html_e( 'Latvija / Reģioni', 'latvijai-futura' ); ?></p>
+					<p class="eyebrow"><span class="eyebrow-index">LV</span> <?php esc_html_e( 'Latvija / 5 novadi', 'latvijai-futura' ); ?></p>
 
 					<h2 class="latvia-title">
 						<?php esc_html_e( 'Viena Latvija.', 'latvijai-futura' ); ?>
@@ -237,7 +245,7 @@ $demo_projects = array(
 
 					<div class="latvia-meta">
 						<span class="lv-flag" aria-hidden="true"></span>
-						<span><?php esc_html_e( 'Latvija · 64 589 km²', 'latvijai-futura' ); ?></span>
+						<span><?php esc_html_e( '5 novadi · 64 589 km²', 'latvijai-futura' ); ?></span>
 						<span><?php echo esc_html( latvijai_get( 'contact_coords' ) ); ?></span>
 					</div>
 
@@ -247,12 +255,14 @@ $demo_projects = array(
 					</a>
 				</div>
 
-				<div class="latvia-regions" role="list" aria-label="<?php esc_attr_e( 'Latvijas reģioni', 'latvijai-futura' ); ?>">
+				<div class="latvia-regions" role="list" aria-label="<?php esc_attr_e( 'Latvijas novadi', 'latvijai-futura' ); ?>">
 					<?php foreach ( $latvia_regions as $region_index => $region ) : ?>
 						<div class="latvia-region" role="listitem">
 							<span class="latvia-region-index"><?php echo esc_html( str_pad( (string) ( $region_index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
-							<strong><?php echo esc_html( $region['name'] ); ?></strong>
-							<em><?php echo esc_html( $region['direction'] ); ?></em>
+							<div class="latvia-region-copy">
+								<strong><?php echo esc_html( $region['name'] ); ?></strong>
+								<em><?php echo esc_html( $region['places'] ); ?></em>
+							</div>
 						</div>
 					<?php endforeach; ?>
 				</div>
@@ -346,6 +356,11 @@ $demo_projects = array(
 							<?php echo esc_html( latvijai_get( 'spotlight_label' ) ); ?>
 							<?php latvijai_icon_e( 'arrow-up-right' ); ?>
 						</a>
+					</div>
+
+					<div class="spotlight-alphabet">
+						<span class="spotlight-alphabet-label"><?php esc_html_e( 'Latviešu valoda', 'latvijai-futura' ); ?></span>
+						<span class="spotlight-alphabet-letters" aria-hidden="true"><span>Ā</span><span>Č</span><span>Ē</span><span>Ģ</span><span>Ī</span><span>Ķ</span><span>Ļ</span><span>Ņ</span><span>Š</span><span>Ū</span><span>Ž</span></span>
 					</div>
 				</div>
 

@@ -33,16 +33,16 @@ function latvijai_defaults() {
 			'stat_1_label'        => 'Aktīvi projekti',
 			'stat_2_number'       => '48',
 			'stat_2_label'        => 'Brīvprātīgie',
-			'stat_3_number'       => '9',
-			'stat_3_label'        => 'Pilsētas',
+			'stat_3_number'       => '5',
+			'stat_3_label'        => 'Novadi',
 			'stat_4_number'       => '∞',
 			'stat_4_label'        => 'Idejas',
-			'spotlight_eyebrow'   => 'Fokuss / 03',
+			'spotlight_eyebrow'   => 'Fokuss / 03 · Valoda',
 			'spotlight_title'     => 'Runā Latviski',
 			'spotlight_text'      => 'Valoda ir mūsu kopīgais kods. “Runā Latviski” aicina ikvienu — jaunu un vecu, vietējo un atbraukušo — sarunāties latviski ikdienā, bez bailēm kļūdīties.',
 			'spotlight_label'     => 'Iepazīt projektu',
 			'spotlight_url'       => 'https://runalatviski.latvijai.lv/',
-			'cta_eyebrow'         => 'Pieteikties / 05',
+			'cta_eyebrow'         => 'Pieteikties / 05 · Latvijai',
 			'cta_title'           => 'Tev ir ideja?',
 			'cta_title_2'         => 'Mums ir platforma.',
 			'cta_text'            => 'Pastāsti par savu projektu, iniciatīvu vai vienkārši labu domu Latvijai. Mēs palīdzēsim atrast cilvēkus, resursus un ceļu līdz īstenošanai.',
@@ -50,7 +50,7 @@ function latvijai_defaults() {
 			'cta_primary_url'     => 'mailto:info@latvijai.lv',
 			'cta_secondary_label' => 'Ziedo',
 			'cta_secondary_url'   => 'https://latvijai.lv/ziedo/',
-			'cta_meta'            => 'Visa Latvija · visi reģioni · visas idejas',
+			'cta_meta'            => 'Visa Latvija · visi novadi · visas idejas',
 			'footer_text'         => 'Sabiedrisko projektu platforma, kas savieno idejas, cilvēkus un vietas. Būvējam Latviju, kurā gribas dzīvot.',
 			'contact_email'       => 'info@latvijai.lv',
 			'contact_location'    => 'Rīga, Latvija',
@@ -142,6 +142,11 @@ function latvijai_menu_fallback( $args = array() ) {
 			'url'     => home_url( '/' ),
 			'current' => is_front_page(),
 		),
+		'regions'  => array(
+			'label'   => __( 'Novadi', 'latvijai-futura' ),
+			'url'     => home_url( '/#latvija' ),
+			'current' => false,
+		),
 		'projects' => array(
 			'label'   => __( 'Projekti', 'latvijai-futura' ),
 			'url'     => $projects_url,
@@ -228,7 +233,7 @@ function latvijai_reading_time( $post_id = 0 ) {
 
 	return sprintf(
 		/* translators: %s: number of minutes. */
-		_n( '%s min lasīšana', '%s min lasīšanas', $minutes, 'latvijai-futura' ),
+		_n( '%s min lasīt', '%s min lasīt', $minutes, 'latvijai-futura' ),
 		number_format_i18n( $minutes )
 	);
 }

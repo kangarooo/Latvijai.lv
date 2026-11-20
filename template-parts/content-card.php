@@ -34,7 +34,7 @@ $thumbnail = get_the_post_thumbnail( $post_id, 'latvijai-card', array( 'loading'
 		<?php else : ?>
 			<span class="post-card-fallback"><span aria-hidden="true"><?php echo esc_html( $glyph ); ?></span></span>
 		<?php endif; ?>
-		<span class="post-card-index">J—<?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+		<span class="post-card-index">Ž—<?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
 	</a>
 
 	<div class="post-card-body">

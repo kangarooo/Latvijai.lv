@@ -1301,11 +1301,19 @@ body.nav-open .site-header {
 
 .latvia-region {
 	display: grid;
-	grid-template-columns: 2.3rem minmax(0, 1fr) auto;
+	grid-template-columns: 2.3rem minmax(0, 1fr);
 	align-items: baseline;
 	gap: 1rem;
 	padding: 1rem 0;
 	border-bottom: 1px solid var(--line);
+}
+
+.latvia-region-copy {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+	min-width: 0;
 }
 
 .latvia-region:first-child {
@@ -1333,7 +1341,8 @@ body.nav-open .site-header {
 	font-family: var(--font-mono);
 	font-size: 0.5rem;
 	font-style: normal;
-	letter-spacing: 0.18em;
+	letter-spacing: 0.16em;
+	text-align: right;
 	text-transform: uppercase;
 	color: var(--muted);
 }
@@ -1789,6 +1798,40 @@ body.nav-open .site-header {
 	user-select: none;
 }
 
+.spotlight-alphabet {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: clamp(1.6rem, 3vw, 2.4rem);
+	padding-top: 0.85rem;
+	border-top: 1px solid var(--line);
+	font-family: var(--font-mono);
+	font-size: clamp(0.5rem, 0.9vw, 0.62rem);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: rgba(244, 241, 234, 0.42);
+}
+
+.spotlight-alphabet-label {
+	white-space: nowrap;
+	color: var(--muted);
+}
+
+.spotlight-alphabet-letters {
+	display: inline-flex;
+	gap: clamp(0.32rem, 0.8vw, 0.62rem);
+	font-size: 1.08em;
+	letter-spacing: 0.1em;
+	color: rgba(244, 241, 234, 0.58);
+	white-space: nowrap;
+}
+
+.spotlight-alphabet-letters span:nth-child(odd) {
+	color: var(--red-bright);
+	opacity: 0.85;
+}
+
 .spotlight-orbit {
 	position: absolute;
 	width: 74%;
@@ -1825,11 +1868,12 @@ body.nav-open .site-header {
 
 .spotlight-coords {
 	position: absolute;
+	top: 1.5rem;
 	right: 1.5rem;
-	bottom: 1.5rem;
 	font-family: var(--font-mono);
 	font-size: 0.5rem;
 	letter-spacing: 0.15em;
+	text-align: right;
 	text-transform: uppercase;
 	color: rgba(244, 241, 234, 0.35);
 }
@@ -2168,6 +2212,20 @@ body.nav-open .site-header {
 	overflow: hidden;
 }
 
+.footer-ornament {
+	margin-top: clamp(1.4rem, 2.6vw, 2.2rem);
+	color: var(--flag-red);
+	opacity: 0.78;
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.footer-ornament svg {
+	display: block;
+	width: 100%;
+	height: 26px;
+}
+
 .footer-top {
 	display: grid;
 	grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 0.75fr));
@@ -2181,10 +2239,20 @@ body.nav-open .site-header {
 
 .footer-text {
 	max-width: 23rem;
-	margin: 0 0 1.6rem;
+	margin: 0 0 1rem;
 	font-size: 0.9rem;
 	line-height: 1.7;
 	color: var(--muted);
+}
+
+.footer-regions {
+	margin: 0 0 1.6rem;
+	font-family: var(--font-mono);
+	font-size: 0.5rem;
+	line-height: 1.8;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: rgba(244, 241, 234, 0.36);
 }
 
 .footer-socials {
@@ -3771,7 +3839,7 @@ body.nav-open .site-header {
 	}
 
 	.spotlight-content {
-		padding-bottom: 0;
+		padding-bottom: 1.5rem;
 	}
 
 	.spotlight-visual {
@@ -3974,8 +4042,14 @@ body.nav-open .site-header {
 	}
 
 	.latvia-region {
-		grid-template-columns: 2rem minmax(0, 1fr) auto;
+		grid-template-columns: 2rem minmax(0, 1fr);
 		gap: 0.7rem;
+	}
+
+	.latvia-region-copy {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.3rem;
 	}
 
 	.latvia-region strong {
@@ -3984,6 +4058,21 @@ body.nav-open .site-header {
 
 	.latvia-region em {
 		font-size: 0.45rem;
+		text-align: left;
+	}
+
+	.spotlight-alphabet {
+		font-size: 0.46rem;
+		gap: 0.6rem;
+		padding-top: 0.7rem;
+	}
+
+	.spotlight-alphabet-letters {
+		gap: 0.28rem;
+	}
+
+	.footer-ornament svg {
+		height: 22px;
 	}
 
 	.hero-meta {

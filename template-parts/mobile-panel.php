@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</nav>
 
 	<div class="mobile-panel-foot">
-		<span class="eyebrow eyebrow--plain"><?php esc_html_e( 'Latvijai.lv · Rīga', 'latvijai-futura' ); ?></span>
+		<span class="eyebrow eyebrow--plain"><?php esc_html_e( 'Latvijai.lv · Latvija', 'latvijai-futura' ); ?></span>
 		<div class="mobile-socials">
 			<?php latvijai_social_links( 'icon-btn' ); ?>
 		</div>

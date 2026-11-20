@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<span class="header-clock" aria-hidden="true">
 				<span class="live-dot"></span>
 				<span data-riga-time>--:--</span>
-				RĪGA
+				<?php esc_html_e( 'Latvijas laiks', 'latvijai-futura' ); ?>
 			</span>
 
 			<button class="icon-btn search-toggle" type="button" data-search-open aria-haspopup="dialog" aria-controls="search-overlay" aria-expanded="false" aria-label="<?php esc_attr_e( 'Atvērt meklēšanu', 'latvijai-futura' ); ?>">

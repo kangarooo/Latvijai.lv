@@ -16,10 +16,28 @@ $contact_email = latvijai_get( 'contact_email' );
 
 <footer id="colophon" class="site-footer">
 	<div class="container">
+		<div class="footer-ornament" aria-hidden="true">
+			<svg viewBox="0 0 1200 26" preserveAspectRatio="none" focusable="false">
+				<defs>
+					<pattern id="latvijai-lielvarde" width="72" height="26" patternUnits="userSpaceOnUse">
+						<path d="M36 2 51 13 36 24 21 13Z" fill="none" stroke="#f4f1ea" stroke-opacity=".55" stroke-width="1.1"/>
+						<path d="M36 7 44 13 36 19 28 13Z" fill="currentColor" opacity=".8"/>
+						<path d="M7 7v12M1 13h12" stroke="currentColor" stroke-width="1.1"/>
+						<path d="M65 7v12M59 13h12" stroke="currentColor" stroke-width="1.1"/>
+						<circle cx="36" cy="13" r="1.2" fill="#f4f1ea" opacity=".55"/>
+						<circle cx="15" cy="23" r="1" fill="currentColor" opacity=".65"/>
+						<circle cx="57" cy="3" r="1" fill="currentColor" opacity=".65"/>
+					</pattern>
+				</defs>
+				<rect width="1200" height="26" fill="url(#latvijai-lielvarde)"/>
+			</svg>
+		</div>
+
 		<div class="footer-top">
 			<div class="footer-brand">
 				<?php latvijai_brand(); ?>
 				<p class="footer-text"><?php echo esc_html( latvijai_get( 'footer_text' ) ); ?></p>
+				<p class="footer-regions"><?php esc_html_e( 'Rīga · Kurzeme · Zemgale · Vidzeme · Latgale', 'latvijai-futura' ); ?></p>
 				<div class="footer-socials">
 					<?php latvijai_social_links(); ?>
 				</div>
@@ -42,7 +60,7 @@ $contact_email = latvijai_get( 'contact_email' );
 			</div>
 
 			<div class="footer-col">
-				<h3><?php esc_html_e( 'Kontakts', 'latvijai-futura' ); ?></h3>
+				<h3><?php esc_html_e( 'Sazinies', 'latvijai-futura' ); ?></h3>
 				<div class="footer-contact">
 					<span class="footer-contact-item">
 						<?php latvijai_icon_e( 'mail' ); ?>
@@ -69,7 +87,7 @@ $contact_email = latvijai_get( 'contact_email' );
 				<span class="footer-clock">
 					<?php latvijai_icon_e( 'clock' ); ?>
 					<strong data-riga-time>--:--</strong>
-					<?php esc_html_e( 'Rīga', 'latvijai-futura' ); ?>
+					<?php esc_html_e( 'Latvijas laiks', 'latvijai-futura' ); ?>
 				</span>
 			</div>
 		</div>
