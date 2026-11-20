@@ -154,7 +154,7 @@ https://www.gnu.org/licenses/gpl-2.0.html
 * Preloader image is now chosen from the Media Library instead of typing a URL.
 * Default preloader dots now use Latvian flag colours: carmine – white – carmine.
 * Preloader dots and "Lādē Latviju…" text are now centred together instead of being split to the top and bottom of the screen.
-* Bigger preloader dots (22 px).
+* Bigger preloader dots (22 px) and "Lādē Latviju…" text.
 * A custom preloader image now fills the full screen width (cropped to fit the screen height if needed).
 * Updated the 1200 × 900 theme screenshot to show the preloader.
 
