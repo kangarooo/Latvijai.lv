@@ -65,6 +65,8 @@ function latvijai_defaults() {
 			'preloader_bg_color'   => '#0a0a11',
 			'preloader_bg_color_2' => '#12050a',
 			'preloader_duration'   => '800',
+			'header_flag_enabled'  => '1',
+			'header_flag_height'   => '20',
 		);
 	}
 
@@ -515,3 +517,23 @@ function latvijai_comment( $comment, $args, $depth ) {
 		</article>
 	<?php
 }
+
+/**
+ * Latvian national flag strip shown at the very top of the header.
+ *
+ * Proportions follow the Latvian flag law: carmine – white – carmine
+ * stripes in a 2 : 1 : 2 ratio. Colour is Pantone 201 C (#9D2235).
+ */
+function latvijai_header_flag() {
+	if ( ! latvijai_get( 'header_flag_enabled' ) ) {
+		return;
+	}
+	?>
+	<div id="header_flag" role="img" aria-label="<?php esc_attr_e( 'Latvijas valsts karogs', 'latvijai-futura' ); ?>">
+		<span class="header_flag_1"></span>
+		<span class="header_flag_0"></span>
+		<span class="header_flag_1"></span>
+	</div>
+	<?php
+}
+

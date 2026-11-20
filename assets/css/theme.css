@@ -48,6 +48,34 @@
 	top: 32px;
 }
 
+/* Latvian national flag — carmine / white / carmine, 2 : 1 : 2 */
+#header_flag {
+	display: grid;
+	grid-template-rows: 2fr 1fr 2fr;
+	width: 100%;
+	height: var(--flag-h);
+	overflow: hidden;
+	line-height: 0;
+	/* Keep the real colours in Windows High Contrast / forced-colours mode. */
+	forced-color-adjust: none;
+	-webkit-print-color-adjust: exact;
+	print-color-adjust: exact;
+}
+
+#header_flag .header_flag_1,
+#header_flag .header_flag_0 {
+	display: block;
+	min-height: 0;
+}
+
+#header_flag .header_flag_1 {
+	background-color: var(--latvian-flag-red);
+}
+
+#header_flag .header_flag_0 {
+	background-color: var(--latvian-flag-white);
+}
+
 .header-inner {
 	display: flex;
 	align-items: center;
@@ -382,7 +410,7 @@ body.search-open {
 	z-index: 90;
 	display: flex;
 	flex-direction: column;
-	padding: calc(var(--header-h) + 2rem) var(--gutter) 2rem;
+	padding: calc(var(--header-offset) + 2rem) var(--gutter) 2rem;
 	background:
 		radial-gradient(ellipse 80% 45% at 100% 0%, rgba(225, 29, 63, 0.16), transparent 65%),
 		rgba(6, 6, 10, 0.98);
@@ -660,7 +688,7 @@ body.nav-open .site-header {
 	display: flex;
 	align-items: center;
 	min-height: 100svh;
-	padding-top: calc(var(--header-h) + 2.5rem);
+	padding-top: calc(var(--header-offset) + 2.5rem);
 	padding-bottom: 5rem;
 	overflow: hidden;
 	isolation: isolate;
@@ -1261,7 +1289,7 @@ body.nav-open .site-header {
 
 .mission-title {
 	position: sticky;
-	top: calc(var(--header-h) + 2rem);
+	top: calc(var(--header-offset) + 2rem);
 }
 
 .mission-title h2 {
@@ -2640,7 +2668,7 @@ body.nav-open .site-header {
 
 .page-hero {
 	position: relative;
-	padding: calc(var(--header-h) + clamp(3.5rem, 7vw, 6.5rem)) 0 clamp(2.5rem, 5vw, 4rem);
+	padding: calc(var(--header-offset) + clamp(3.5rem, 7vw, 6.5rem)) 0 clamp(2.5rem, 5vw, 4rem);
 	overflow: hidden;
 }
 
@@ -3010,7 +3038,7 @@ body.nav-open .site-header {
 
 .single-hero {
 	position: relative;
-	padding: calc(var(--header-h) + clamp(3.5rem, 6vw, 5.5rem)) 0 clamp(2rem, 4vw, 3rem);
+	padding: calc(var(--header-offset) + clamp(3.5rem, 6vw, 5.5rem)) 0 clamp(2rem, 4vw, 3rem);
 }
 
 .single-hero::before {
@@ -3305,7 +3333,7 @@ body.nav-open .site-header {
 
 .project-hero {
 	position: relative;
-	padding: calc(var(--header-h) + clamp(3.5rem, 6vw, 5.5rem)) 0 clamp(2rem, 4vw, 3rem);
+	padding: calc(var(--header-offset) + clamp(3.5rem, 6vw, 5.5rem)) 0 clamp(2rem, 4vw, 3rem);
 	overflow: hidden;
 }
 
@@ -3697,7 +3725,7 @@ body.nav-open .site-header {
 	display: flex;
 	align-items: center;
 	min-height: 100svh;
-	padding: calc(var(--header-h) + 3rem) 0 4rem;
+	padding: calc(var(--header-offset) + 3rem) 0 4rem;
 	overflow: hidden;
 }
 
@@ -3921,7 +3949,7 @@ body.nav-open .site-header {
 @media (max-width: 960px) {
 	.hero {
 		min-height: auto;
-		padding-top: calc(var(--header-h) + 5rem);
+		padding-top: calc(var(--header-offset) + 5rem);
 		padding-bottom: 4rem;
 	}
 
@@ -4170,7 +4198,7 @@ body.nav-open .site-header {
 	}
 
 	.hero {
-		padding-top: calc(var(--header-h) + 3.5rem);
+		padding-top: calc(var(--header-offset) + 3.5rem);
 	}
 
 
