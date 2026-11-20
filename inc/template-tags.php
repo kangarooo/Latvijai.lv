@@ -60,6 +60,11 @@ function latvijai_defaults() {
 			'social_instagram'    => 'https://www.instagram.com/latvijailv',
 			'social_linkedin'     => 'https://www.linkedin.com/company/latvijailv/',
 			'social_youtube'      => '',
+			'preloader_enabled'    => '1',
+			'preloader_image'      => '',
+			'preloader_bg_color'   => '#0a0a11',
+			'preloader_bg_color_2' => '#12050a',
+			'preloader_duration'   => '800',
 		);
 	}
 

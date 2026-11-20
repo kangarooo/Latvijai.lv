@@ -10,6 +10,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Sanitize checkbox value.
+ *
+ * @param mixed $value Input value.
+ * @return int
+ */
+function latvijai_sanitize_checkbox( $value ) {
+	return (int) ! empty( $value );
+}
+
+/**
  * Register theme customizer options.
  *
  * @param WP_Customize_Manager $wp_customize Customizer instance.
@@ -132,5 +142,21 @@ function latvijai_customize_register( $wp_customize ) {
 	$add_field( 'social_instagram', __( 'Instagram URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
 	$add_field( 'social_linkedin', __( 'LinkedIn URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
 	$add_field( 'social_youtube', __( 'YouTube URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
+
+	/* Preloader */
+	$wp_customize->add_section(
+		'latvijai_preloader',
+		array(
+			'title'    => __( 'Prelādētājs', 'latvijai-futura' ),
+			'panel'    => 'latvijai_home',
+			'priority' => 80,
+		)
+	);
+
+	$add_field( 'preloader_enabled', __( 'Ieslēgt prelādētāju', 'latvijai-futura' ), 'latvijai_preloader', 'checkbox', 'latvijai_sanitize_checkbox' );
+	$add_field( 'preloader_image', __( 'Prelādētāja attēls', 'latvijai-futura' ), 'latvijai_preloader', 'url', 'esc_url_raw' );
+	$add_field( 'preloader_bg_color', __( 'Fona krāsa', 'latvijai-futura' ), 'latvijai_preloader', 'color', 'sanitize_hex_color' );
+	$add_field( 'preloader_bg_color_2', __( 'Fona otrā krāsa (gradientam)', 'latvijai-futura' ), 'latvijai_preloader', 'color', 'sanitize_hex_color' );
+	$add_field( 'preloader_duration', __( 'Minimālā rādīšanas laiks (ms)', 'latvijai-futura' ), 'latvijai_preloader', 'number', 'absint' );
 }
 add_action( 'customize_register', 'latvijai_customize_register' );

@@ -21,6 +21,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<?php
+if ( latvijai_get( 'preloader_enabled' ) ) :
+	$preloader_bg1 = latvijai_get( 'preloader_bg_color' );
+	$preloader_bg2 = latvijai_get( 'preloader_bg_color_2' );
+	$preloader_bg  = $preloader_bg2 ? 'linear-gradient(135deg, ' . $preloader_bg1 . ', ' . $preloader_bg2 . ')' : $preloader_bg1;
+?>
+	<div id="preloader" class="preloader" aria-hidden="true" role="status" aria-label="<?php esc_attr_e( 'Lādē lapā', 'latvijai-futura' ); ?>" data-duration="<?php echo esc_attr( latvijai_get( 'preloader_duration' ) ); ?>" style="--preloader-bg: <?php echo esc_attr( $preloader_bg ); ?>;">
+		<?php
+		$preloader_image = latvijai_get( 'preloader_image' );
+		if ( $preloader_image ) :
+		?>
+			<img class="preloader-image" src="<?php echo esc_url( $preloader_image ); ?>" alt="" aria-hidden="true" />
+		<?php else : ?>
+			<div class="preloader-spinner" aria-hidden="true">
+				<span></span><span></span><span></span>
+			</div>
+		<?php endif; ?>
+		<p class="preloader-text"><?php esc_html_e( 'Lādē Latviju…', 'latvijai-futura' ); ?></p>
+	</div>
+<?php endif; ?>
+
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Pāriet uz saturu', 'latvijai-futura' ); ?></a>
 
 <header id="masthead" class="site-header" data-header>

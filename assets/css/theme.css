@@ -276,6 +276,109 @@ body.search-open {
 }
 
 /* --------------------------------------------------------------------------
+   02b. Preloader
+   -------------------------------------------------------------------------- */
+
+.preloader {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	display: grid;
+	place-items: center;
+	background: var(--preloader-bg, linear-gradient(135deg, #0a0a11, #12050a));
+	transition:
+		opacity 0.5s var(--ease),
+		visibility 0.5s var(--ease);
+	will-change: opacity, visibility;
+}
+
+.preloader.is-hidden {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.preloader-image {
+	max-width: 220px;
+	max-height: 220px;
+	width: auto;
+	height: auto;
+	object-fit: contain;
+	filter: drop-shadow(0 0 32px rgba(225, 29, 63, 0.35));
+	animation: preloader-float 3s ease-in-out infinite;
+}
+
+.preloader-spinner {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.preloader-spinner span {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--red-bright);
+	box-shadow: 0 0 12px rgba(225, 29, 63, 0.8);
+	animation: preloader-ping 1.2s ease-in-out infinite;
+}
+
+.preloader-spinner span:nth-child(2) {
+	animation-delay: 0.15s;
+	background: var(--ice);
+	box-shadow: 0 0 12px rgba(159, 232, 255, 0.8);
+}
+
+.preloader-spinner span:nth-child(3) {
+	animation-delay: 0.3s;
+	background: var(--red-bright);
+	box-shadow: 0 0 12px rgba(225, 29, 63, 0.8);
+}
+
+.preloader-text {
+	margin-top: 1.5rem;
+	font-family: var(--font-mono);
+	font-size: 0.55rem;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: rgba(244, 241, 234, 0.55);
+	animation: preloader-text-pulse 2s ease-in-out infinite;
+}
+
+@keyframes preloader-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+	}
+}
+
+@keyframes preloader-ping {
+	0%,
+	100% {
+		opacity: 0.4;
+		transform: scale(0.85);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+}
+
+@keyframes preloader-text-pulse {
+	0%,
+	100% {
+		opacity: 0.45;
+	}
+	50% {
+		opacity: 0.85;
+	}
+}
+
+/* --------------------------------------------------------------------------
    02. Mobile navigation panel
    -------------------------------------------------------------------------- */
 

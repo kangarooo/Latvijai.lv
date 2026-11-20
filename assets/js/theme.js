@@ -29,6 +29,7 @@
 		initCopy();
 		initProgress();
 		initBackToTop();
+		initPreloader();
 	});
 
 	/* ------------------------------------------------------------------
@@ -648,6 +649,50 @@
 				behavior: reduceMotion ? 'auto' : 'smooth'
 			});
 		});
+	}
+
+	/* ------------------------------------------------------------------
+	 * Preloader
+	 * ------------------------------------------------------------------ */
+	function initPreloader() {
+		var preloader = document.getElementById('preloader');
+		if (!preloader) {
+			return;
+		}
+
+		var minDuration = 800;
+		try {
+			var duration = parseInt(preloader.dataset.duration, 10);
+			if (!isNaN(duration)) {
+				minDuration = duration;
+			}
+		} catch (error) {
+			// ignore
+		}
+
+		var startTime = Date.now();
+
+		var hide = function () {
+			var elapsed = Date.now() - startTime;
+			var remaining = minDuration - elapsed;
+			if (remaining > 0) {
+				setTimeout(hide, remaining);
+				return;
+			}
+			preloader.classList.add('is-hidden');
+			// Remove from DOM after transition
+			setTimeout(function () {
+				if (preloader.parentNode) {
+					preloader.parentNode.removeChild(preloader);
+				}
+			}, 600);
+		};
+
+		if (document.readyState === 'complete') {
+			hide();
+		} else {
+			window.addEventListener('load', hide);
+		}
 	}
 
 	/* ------------------------------------------------------------------
