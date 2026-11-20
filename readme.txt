@@ -153,6 +153,8 @@ https://www.gnu.org/licenses/gpl-2.0.html
 * Fixed the Customizer showing no options: preloader colour fields now use the colour picker control (a JS error previously stopped the Customizer from loading).
 * Preloader image is now chosen from the Media Library instead of typing a URL.
 * Default preloader dots now use Latvian flag colours: carmine – white – carmine.
+* Preloader dots and "Lādē Latviju…" text are now centred together instead of being split to the top and bottom of the screen.
+* Updated the 1200 × 900 theme screenshot to show the preloader.
 
 = 1.4.0 =
 * Added a configurable page preloader with custom image upload and gradient background colours.
