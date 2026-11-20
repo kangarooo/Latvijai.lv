@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,11 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.4.1 =
+* Fixed the Customizer showing no options: preloader colour fields now use the colour picker control (a JS error previously stopped the Customizer from loading).
+* Preloader image is now chosen from the Media Library instead of typing a URL.
+* Default preloader dots now use Latvian flag colours: carmine – white – carmine.
 
 = 1.4.0 =
 * Added a configurable page preloader with custom image upload and gradient background colours.
