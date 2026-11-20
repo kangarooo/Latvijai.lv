@@ -155,6 +155,7 @@ https://www.gnu.org/licenses/gpl-2.0.html
 * New Customizer section "Latvijas karogs galvenē": turn the flag on/off and set its height (4–60 px, default 20 px).
 * Page content, the mobile menu and anchor scrolling are offset by the flag height so nothing is hidden under the header.
 * The flag keeps its colours in Windows High Contrast mode and when printing, and is announced to screen readers as "Latvijas valsts karogs".
+* Updated the 1200 × 900 theme screenshot to show the header flag.
 
 = 1.4.1 =
 * Fixed the Customizer showing no options: preloader colour fields now use the colour picker control (a JS error previously stopped the Customizer from loading).
