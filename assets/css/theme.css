@@ -302,28 +302,30 @@ body.search-open {
 }
 
 .preloader-image {
-	max-width: 220px;
-	max-height: 220px;
-	width: auto;
+	/* Full viewport width; tall images are cropped rather than overflowing. */
+	display: block;
+	width: 100%;
+	max-width: none;
 	height: auto;
-	object-fit: contain;
-	filter: drop-shadow(0 0 32px rgba(225, 29, 63, 0.35));
-	animation: preloader-float 3s ease-in-out infinite;
+	/* Leave room for the "Lādē Latviju…" text below the image. */
+	max-height: calc(100vh - 5rem);
+	max-height: calc(100svh - 5rem);
+	object-fit: cover;
 }
 
 .preloader-spinner {
 	display: flex;
-	gap: 0.5rem;
+	gap: 1rem;
 	align-items: center;
 	justify-content: center;
 }
 
 .preloader-spinner span {
-	width: 10px;
-	height: 10px;
+	width: 22px;
+	height: 22px;
 	border-radius: 50%;
 	background: var(--flag-red);
-	box-shadow: 0 0 12px rgba(158, 27, 50, 0.85);
+	box-shadow: 0 0 22px rgba(158, 27, 50, 0.9);
 	animation: preloader-ping 1.2s ease-in-out infinite;
 }
 
@@ -331,7 +333,7 @@ body.search-open {
 .preloader-spinner span:nth-child(2) {
 	animation-delay: 0.15s;
 	background: #fff;
-	box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+	box-shadow: 0 0 22px rgba(255, 255, 255, 0.7);
 }
 
 .preloader-spinner span:nth-child(3) {
@@ -346,16 +348,6 @@ body.search-open {
 	text-transform: uppercase;
 	color: rgba(244, 241, 234, 0.55);
 	animation: preloader-text-pulse 2s ease-in-out infinite;
-}
-
-@keyframes preloader-float {
-	0%,
-	100% {
-		transform: translateY(0);
-	}
-	50% {
-		transform: translateY(-8px);
-	}
 }
 
 @keyframes preloader-ping {
