@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.4.1
+Stable tag: 1.5.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,13 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.5.0 =
+* Added the Latvian national flag as a thin strip at the very top of the header (carmine – white – carmine, official 2 : 1 : 2 proportions, Pantone 201 C #9D2235).
+* The flag sits inside the fixed header, so it stays visible while scrolling and works with the WordPress admin bar.
+* New Customizer section "Latvijas karogs galvenē": turn the flag on/off and set its height (4–60 px, default 20 px).
+* Page content, the mobile menu and anchor scrolling are offset by the flag height so nothing is hidden under the header.
+* The flag keeps its colours in Windows High Contrast mode and when printing, and is announced to screen readers as "Latvijas valsts karogs".
 
 = 1.4.1 =
 * Fixed the Customizer showing no options: preloader colour fields now use the colour picker control (a JS error previously stopped the Customizer from loading).

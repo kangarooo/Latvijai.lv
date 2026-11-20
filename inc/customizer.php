@@ -143,6 +143,26 @@ function latvijai_customize_register( $wp_customize ) {
 	$add_field( 'social_linkedin', __( 'LinkedIn URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
 	$add_field( 'social_youtube', __( 'YouTube URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
 
+	/* Latvian national flag above the header */
+	$wp_customize->add_section(
+		'latvijai_header_flag',
+		array(
+			'title'    => __( 'Latvijas karogs galvenē', 'latvijai-futura' ),
+			'panel'    => 'latvijai_home',
+			'priority' => 75,
+		)
+	);
+
+	$add_field( 'header_flag_enabled', __( 'Rādīt Latvijas karogu virs galvenes', 'latvijai-futura' ), 'latvijai_header_flag', 'checkbox', 'latvijai_sanitize_checkbox' );
+	$add_field(
+		'header_flag_height',
+		__( 'Karoga augstums (px)', 'latvijai-futura' ),
+		'latvijai_header_flag',
+		'number',
+		'latvijai_sanitize_flag_height',
+		__( 'No 4 līdz 60 px. Svītru attiecība vienmēr paliek 2 : 1 : 2.', 'latvijai-futura' )
+	);
+
 	/* Preloader */
 	$wp_customize->add_section(
 		'latvijai_preloader',
@@ -207,3 +227,13 @@ function latvijai_customize_register( $wp_customize ) {
 	$add_field( 'preloader_duration', __( 'Minimālā rādīšanas laiks (ms)', 'latvijai-futura' ), 'latvijai_preloader', 'number', 'absint' );
 }
 add_action( 'customize_register', 'latvijai_customize_register' );
+
+/**
+ * Clamp the header flag height to a sensible range.
+ *
+ * @param mixed $value Raw value.
+ * @return int
+ */
+function latvijai_sanitize_flag_height( $value ) {
+	return max( 4, min( 60, absint( $value ) ) );
+}

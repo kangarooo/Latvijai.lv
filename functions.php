@@ -95,6 +95,13 @@ function latvijai_assets() {
 	wp_enqueue_style( 'latvijai-base', get_stylesheet_uri(), $deps, $version );
 	wp_enqueue_style( 'latvijai-theme', get_template_directory_uri() . '/assets/css/theme.css', array( 'latvijai-base' ), $version );
 
+	if ( latvijai_get( 'header_flag_enabled' ) ) {
+		wp_add_inline_style(
+			'latvijai-theme',
+			sprintf( ':root{--flag-h:%dpx;}', latvijai_sanitize_flag_height( latvijai_get( 'header_flag_height' ) ) )
+		);
+	}
+
 	wp_enqueue_script(
 		'latvijai-theme',
 		get_template_directory_uri() . '/assets/js/theme.js',
@@ -160,6 +167,10 @@ function latvijai_body_classes( $classes ) {
 
 	if ( is_singular() ) {
 		$classes[] = 'is-singular';
+	}
+
+	if ( latvijai_get( 'header_flag_enabled' ) ) {
+		$classes[] = 'has-header-flag';
 	}
 
 	return $classes;

@@ -45,6 +45,7 @@ if ( latvijai_get( 'preloader_enabled' ) ) :
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Pāriet uz saturu', 'latvijai-futura' ); ?></a>
 
 <header id="masthead" class="site-header" data-header>
+	<?php latvijai_header_flag(); ?>
 	<div class="header-inner container">
 		<div class="site-branding">
 			<?php latvijai_brand(); ?>
