@@ -10,11 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> class="no-js">
+<html <?php language_attributes(); ?> class="no-js" data-theme="<?php echo esc_attr( latvijai_color_scheme() ); ?>">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+	<script>(function(d){d.classList.remove('no-js');d.classList.add('js');<?php if ( latvijai_get( 'theme_toggle_enabled' ) ) : ?>try{var t=localStorage.getItem('latvijai-theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);}}catch(e){}<?php endif; ?>})(document.documentElement);</script>
 	<?php wp_head(); ?>
 </head>
 
@@ -26,8 +26,12 @@ if ( latvijai_get( 'preloader_enabled' ) ) :
 	$preloader_bg1 = latvijai_get( 'preloader_bg_color' );
 	$preloader_bg2 = latvijai_get( 'preloader_bg_color_2' );
 	$preloader_bg  = $preloader_bg2 ? 'linear-gradient(135deg, ' . $preloader_bg1 . ', ' . $preloader_bg2 . ')' : $preloader_bg1;
+	// Untouched default colours follow the active colour scheme instead.
+	if ( latvijai_default( 'preloader_bg_color' ) === $preloader_bg1 && latvijai_default( 'preloader_bg_color_2' ) === $preloader_bg2 ) {
+		$preloader_bg = '';
+	}
 ?>
-	<div id="preloader" class="preloader" aria-hidden="true" role="status" aria-label="<?php esc_attr_e( 'Lādē lapā', 'latvijai-futura' ); ?>" data-duration="<?php echo esc_attr( latvijai_get( 'preloader_duration' ) ); ?>" style="--preloader-bg: <?php echo esc_attr( $preloader_bg ); ?>;">
+	<div id="preloader" class="preloader" aria-hidden="true" role="status" aria-label="<?php esc_attr_e( 'Lādē lapā', 'latvijai-futura' ); ?>" data-duration="<?php echo esc_attr( latvijai_get( 'preloader_duration' ) ); ?>"<?php echo $preloader_bg ? ' style="--preloader-bg: ' . esc_attr( $preloader_bg ) . ';"' : ''; ?>>
 		<?php
 		$preloader_image = latvijai_get( 'preloader_image' );
 		if ( $preloader_image ) :
@@ -72,6 +76,8 @@ if ( latvijai_get( 'preloader_enabled' ) ) :
 				<span data-riga-time>--:--</span>
 				<?php esc_html_e( 'Latvijas laiks', 'latvijai-futura' ); ?>
 			</span>
+
+			<?php latvijai_theme_toggle(); ?>
 
 			<button class="icon-btn search-toggle" type="button" data-search-open aria-haspopup="dialog" aria-controls="search-overlay" aria-expanded="false" aria-label="<?php esc_attr_e( 'Atvērt meklēšanu', 'latvijai-futura' ); ?>">
 				<?php latvijai_icon_e( 'search' ); ?>

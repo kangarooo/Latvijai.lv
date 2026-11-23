@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,13 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.6.0 =
+* Added a light colour scheme. Customizer → Latvijai — sākumlapa → "Krāsu režīms": Tumšs (default), Gaišs, or Automātiski (follows the visitor's device setting).
+* Optional sun / moon switch in the header lets visitors change between light and dark; their choice is remembered in the browser and applied before the page paints (no flash).
+* The big feature panels and project / post card images stay dark in light mode so the artwork keeps its look.
+* Theme colours are now driven by colour tokens, so background particles, borders, glass panels and shadows all follow the active scheme.
+* The default preloader background follows the colour scheme; custom preloader colours are still respected.
 
 = 1.5.0 =
 * Added the Latvian national flag as a thin strip at the very top of the header (carmine – white – carmine, official 2 : 1 : 2 proportions, Pantone 201 C #9D2235).

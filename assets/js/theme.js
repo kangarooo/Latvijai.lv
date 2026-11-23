@@ -16,7 +16,18 @@
 		}
 	}
 
+	/* Current foreground colour channels, kept in sync with the colour scheme
+	 * so canvas effects (particles) match light and dark mode. */
+	var fgRgb = '244,241,234';
+
+	function readFgRgb() {
+		var value = window.getComputedStyle(document.documentElement).getPropertyValue('--fg-rgb');
+		fgRgb = value ? value.replace(/\s+/g, '') : '244,241,234';
+	}
+
 	ready(function () {
+		readFgRgb();
+		initThemeToggle();
 		initHeader();
 		initClock();
 		initMobileMenu();
@@ -31,6 +42,50 @@
 		initBackToTop();
 		initPreloader();
 	});
+
+	/* ------------------------------------------------------------------
+	 * Light / dark colour scheme switch
+	 * ------------------------------------------------------------------ */
+	function initThemeToggle() {
+		var root = document.documentElement;
+		var prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+		var buttons = document.querySelectorAll('[data-theme-toggle]');
+
+		function effective() {
+			var theme = root.getAttribute('data-theme');
+			if (theme === 'auto') {
+				return prefersLight.matches ? 'light' : 'dark';
+			}
+			return theme === 'light' ? 'light' : 'dark';
+		}
+
+		function sync() {
+			var isLight = effective() === 'light';
+			readFgRgb();
+			Array.prototype.forEach.call(buttons, function (button) {
+				button.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+			});
+		}
+
+		Array.prototype.forEach.call(buttons, function (button) {
+			button.addEventListener('click', function () {
+				var next = effective() === 'light' ? 'dark' : 'light';
+				root.setAttribute('data-theme', next);
+				try {
+					window.localStorage.setItem('latvijai-theme', next);
+				} catch (e) {
+					/* Storage may be unavailable (private mode); the switch still works for this page. */
+				}
+				sync();
+			});
+		});
+
+		if (prefersLight.addEventListener) {
+			prefersLight.addEventListener('change', sync);
+		}
+
+		sync();
+	}
 
 	/* ------------------------------------------------------------------
 	 * Header state
@@ -409,7 +464,7 @@
 
 					if (distance < limit) {
 						context.beginPath();
-						context.strokeStyle = 'rgba(244,241,234,' + (0.08 * (1 - distance / limit)).toFixed(3) + ')';
+						context.strokeStyle = 'rgba(' + fgRgb + ',' + (0.08 * (1 - distance / limit)).toFixed(3) + ')';
 						context.lineWidth = 1;
 						context.moveTo(a.x, a.y);
 						context.lineTo(b.x, b.y);
@@ -418,7 +473,7 @@
 				}
 
 				context.beginPath();
-				context.fillStyle = a.red ? 'rgba(225,29,63,0.75)' : 'rgba(244,241,234,0.42)';
+				context.fillStyle = a.red ? 'rgba(225,29,63,0.75)' : 'rgba(' + fgRgb + ',0.42)';
 				context.arc(a.x, a.y, a.r, 0, Math.PI * 2);
 				context.fill();
 

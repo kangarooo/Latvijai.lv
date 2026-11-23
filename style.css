@@ -4,7 +4,7 @@ Theme URI: https://latvijai.lv
 Author: Latvijai.lv
 Author URI: https://latvijai.lv
 Description: Futūristiska, tumša WordPress tēma Latvijai.lv sabiedrisko projektu platformai. Kinētiska tipogrāfija, stikla paneļi, Latvijas karoga sarkanā akcents, projektu satura tips un pilnībā pielāgojama sākumlapa.
-Version: 1.5.0
+Version: 1.6.0
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
@@ -22,12 +22,22 @@ Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images
 	--bg: #06060a;
 	--bg-elevated: #0a0a11;
 	--bg-deep: #030305;
-	--panel: rgba(255, 255, 255, 0.035);
-	--panel-strong: rgba(255, 255, 255, 0.065);
-	--line: rgba(244, 241, 234, 0.1);
-	--line-strong: rgba(244, 241, 234, 0.2);
+	/* Colour channels (used as rgba(var(--x-rgb), alpha)) so a whole
+	   colour scheme can be swapped by redefining a handful of tokens. */
+	--hi-rgb: 255, 255, 255;
+	--fg-rgb: 244, 241, 234;
+	--bg-rgb: 6, 6, 10;
+	--elev-rgb: 10, 10, 17;
+	--shadow-rgb: 0, 0, 0;
+	--panel: rgba(var(--hi-rgb), 0.035);
+	--panel-strong: rgba(var(--hi-rgb), 0.065);
+	--line: rgba(var(--fg-rgb), 0.1);
+	--line-strong: rgba(var(--fg-rgb), 0.2);
 	--text: #f4f1ea;
-	--text-soft: rgba(244, 241, 234, 0.78);
+	--text-soft: rgba(var(--fg-rgb), 0.78);
+	--text-max: #fff;
+	--preloader-default-bg: linear-gradient(135deg, #0a0a11, #12050a);
+	color-scheme: dark;
 	--muted: #9696a6;
 	--red: #e11d3f;
 	--red-bright: #ff3358;
@@ -51,6 +61,129 @@ Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images
 	--ease: cubic-bezier(0.22, 0.68, 0.28, 1);
 	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 	--glow-red: 0 0 60px rgba(225, 29, 63, 0.28);
+}
+
+/* --------------------------------------------------------------------------
+   Light colour scheme
+   data-theme="light"  → always light
+   data-theme="auto"   → follows the visitor's operating system setting
+   -------------------------------------------------------------------------- */
+
+:root[data-theme="light"] {
+	--bg: #f6f3ee;
+	--bg-elevated: #ffffff;
+	--bg-deep: #ebe6de;
+	--hi-rgb: 23, 20, 28;
+	--fg-rgb: 23, 20, 28;
+	--bg-rgb: 246, 243, 238;
+	--elev-rgb: 255, 255, 255;
+	--shadow-rgb: 60, 34, 44;
+	--line: rgba(var(--fg-rgb), 0.13);
+	--line-strong: rgba(var(--fg-rgb), 0.24);
+	--text: #17141c;
+	--text-max: #000;
+	--muted: #5d5967;
+	--red: #c8102e;
+	--red-bright: #e11d3f;
+	--red-deep: #8f1226;
+	--ice: #0b7493;
+	--violet: #5143d6;
+	--amber: #a35d00;
+	--glow-red: 0 0 50px rgba(200, 16, 46, 0.16);
+	--preloader-default-bg: linear-gradient(135deg, #f6f3ee, #f3e4e6);
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+	:root[data-theme="auto"] {
+		--bg: #f6f3ee;
+		--bg-elevated: #ffffff;
+		--bg-deep: #ebe6de;
+		--hi-rgb: 23, 20, 28;
+		--fg-rgb: 23, 20, 28;
+		--bg-rgb: 246, 243, 238;
+		--elev-rgb: 255, 255, 255;
+		--shadow-rgb: 60, 34, 44;
+		--line: rgba(var(--fg-rgb), 0.13);
+		--line-strong: rgba(var(--fg-rgb), 0.24);
+		--text: #17141c;
+		--text-max: #000;
+		--muted: #5d5967;
+		--red: #c8102e;
+		--red-bright: #e11d3f;
+		--red-deep: #8f1226;
+		--ice: #0b7493;
+		--violet: #5143d6;
+		--amber: #a35d00;
+		--glow-red: 0 0 50px rgba(200, 16, 46, 0.16);
+		--preloader-default-bg: linear-gradient(135deg, #f6f3ee, #f3e4e6);
+		color-scheme: light;
+	}
+}
+
+/* Feature panels and card media stay dark in light mode ("dark islands"):
+   they carry the theme's atmospheric artwork, so they re-declare the dark
+   tokens and everything inside them renders exactly as in dark mode. */
+:root[data-theme="light"] .latvia-panel,
+:root[data-theme="light"] .spotlight-panel,
+:root[data-theme="light"] .cta-panel,
+:root[data-theme="light"] .project-media,
+:root[data-theme="light"] .post-card-media {
+	--bg: #06060a;
+	--bg-elevated: #0a0a11;
+	--bg-deep: #030305;
+	--hi-rgb: 255, 255, 255;
+	--fg-rgb: 244, 241, 234;
+	--bg-rgb: 6, 6, 10;
+	--elev-rgb: 10, 10, 17;
+	--shadow-rgb: 0, 0, 0;
+	--panel: rgba(255, 255, 255, 0.035);
+	--panel-strong: rgba(255, 255, 255, 0.065);
+	--line: rgba(244, 241, 234, 0.1);
+	--line-strong: rgba(244, 241, 234, 0.2);
+	--text: #f4f1ea;
+	--text-soft: rgba(244, 241, 234, 0.78);
+	--text-max: #fff;
+	--muted: #9696a6;
+	--red: #e11d3f;
+	--red-bright: #ff3358;
+	--ice: #9fe8ff;
+	--violet: #7c6cff;
+	--amber: #ffb45c;
+	color-scheme: dark;
+	color: var(--text);
+}
+
+@media (prefers-color-scheme: light) {
+	:root[data-theme="auto"] .latvia-panel,
+	:root[data-theme="auto"] .spotlight-panel,
+	:root[data-theme="auto"] .cta-panel,
+	:root[data-theme="auto"] .project-media,
+	:root[data-theme="auto"] .post-card-media {
+		--bg: #06060a;
+		--bg-elevated: #0a0a11;
+		--bg-deep: #030305;
+		--hi-rgb: 255, 255, 255;
+		--fg-rgb: 244, 241, 234;
+		--bg-rgb: 6, 6, 10;
+		--elev-rgb: 10, 10, 17;
+		--shadow-rgb: 0, 0, 0;
+		--panel: rgba(255, 255, 255, 0.035);
+		--panel-strong: rgba(255, 255, 255, 0.065);
+		--line: rgba(244, 241, 234, 0.1);
+		--line-strong: rgba(244, 241, 234, 0.2);
+		--text: #f4f1ea;
+		--text-soft: rgba(244, 241, 234, 0.78);
+		--text-max: #fff;
+		--muted: #9696a6;
+		--red: #e11d3f;
+		--red-bright: #ff3358;
+		--ice: #9fe8ff;
+		--violet: #7c6cff;
+		--amber: #ffb45c;
+		color-scheme: dark;
+		color: var(--text);
+	}
 }
 
 /* ==========================================================================
@@ -89,8 +222,8 @@ body::before {
 	z-index: -2;
 	pointer-events: none;
 	background-image:
-		linear-gradient(rgba(244, 241, 234, 0.028) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(244, 241, 234, 0.028) 1px, transparent 1px);
+		linear-gradient(rgba(var(--fg-rgb), 0.028) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(var(--fg-rgb), 0.028) 1px, transparent 1px);
 	background-size: 88px 88px;
 	-webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, #000 20%, transparent 100%);
 	mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, #000 20%, transparent 100%);
@@ -271,7 +404,7 @@ samp {
 
 code {
 	padding: 0.15em 0.45em;
-	background: rgba(255, 255, 255, 0.07);
+	background: rgba(var(--hi-rgb), 0.07);
 	border: 1px solid var(--line);
 	border-radius: 5px;
 	color: var(--ice);
@@ -280,7 +413,7 @@ code {
 pre {
 	margin: 2rem 0;
 	padding: 1.5rem;
-	background: #0b0b12;
+	background: var(--bg-elevated);
 	border: 1px solid var(--line);
 	border-radius: 14px;
 	overflow-x: auto;
@@ -369,11 +502,11 @@ pre code {
 
 .text-outline {
 	color: transparent;
-	-webkit-text-stroke: 1.5px rgba(244, 241, 234, 0.62);
+	-webkit-text-stroke: 1.5px rgba(var(--fg-rgb), 0.62);
 }
 
 .text-gradient {
-	background: linear-gradient(100deg, #fff 10%, var(--red-bright) 60%, var(--red) 100%);
+	background: linear-gradient(100deg, var(--text-max) 10%, var(--red-bright) 60%, var(--red) 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
@@ -474,7 +607,7 @@ pre code {
 
 .btn-ghost {
 	border-color: var(--line-strong);
-	background: rgba(255, 255, 255, 0.025);
+	background: rgba(var(--hi-rgb), 0.025);
 	backdrop-filter: blur(10px);
 	color: var(--text-soft);
 }
@@ -491,7 +624,7 @@ pre code {
 }
 
 .btn-light:hover {
-	background: #fff;
+	background: var(--text-max);
 	color: var(--bg);
 }
 
@@ -541,7 +674,7 @@ pre code {
 	padding: 0;
 	border: 1px solid var(--line);
 	border-radius: 50%;
-	background: rgba(255, 255, 255, 0.025);
+	background: rgba(var(--hi-rgb), 0.025);
 	color: var(--text-soft);
 	transition:
 		background-color 0.3s var(--ease),
@@ -584,7 +717,7 @@ select,
 textarea {
 	width: 100%;
 	padding: 0.9rem 1.1rem;
-	background: rgba(255, 255, 255, 0.035);
+	background: rgba(var(--hi-rgb), 0.035);
 	border: 1px solid var(--line);
 	border-radius: 12px;
 	color: var(--text);
@@ -603,7 +736,7 @@ select:focus,
 textarea:focus {
 	outline: none;
 	border-color: rgba(225, 29, 63, 0.7);
-	background: rgba(255, 255, 255, 0.055);
+	background: rgba(var(--hi-rgb), 0.055);
 }
 
 label {

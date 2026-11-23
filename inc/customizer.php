@@ -143,6 +143,47 @@ function latvijai_customize_register( $wp_customize ) {
 	$add_field( 'social_linkedin', __( 'LinkedIn URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
 	$add_field( 'social_youtube', __( 'YouTube URL', 'latvijai-futura' ), 'latvijai_contact', 'url', 'esc_url_raw' );
 
+	/* Colour scheme */
+	$wp_customize->add_section(
+		'latvijai_color_scheme',
+		array(
+			'title'    => __( 'Krāsu režīms', 'latvijai-futura' ),
+			'panel'    => 'latvijai_home',
+			'priority' => 70,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'color_scheme',
+		array(
+			'default'           => latvijai_default( 'color_scheme' ),
+			'sanitize_callback' => 'latvijai_sanitize_color_scheme',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'color_scheme',
+		array(
+			'label'       => __( 'Noklusējuma krāsu režīms', 'latvijai-futura' ),
+			'section'     => 'latvijai_color_scheme',
+			'type'        => 'radio',
+			'choices'     => array(
+				'dark'  => __( 'Tumšs', 'latvijai-futura' ),
+				'light' => __( 'Gaišs', 'latvijai-futura' ),
+				'auto'  => __( 'Automātiski (pēc apmeklētāja ierīces iestatījuma)', 'latvijai-futura' ),
+			),
+		)
+	);
+
+	$add_field(
+		'theme_toggle_enabled',
+		__( 'Rādīt gaišā / tumšā režīma pārslēgu galvenē', 'latvijai-futura' ),
+		'latvijai_color_scheme',
+		'checkbox',
+		'latvijai_sanitize_checkbox',
+		__( 'Apmeklētāja izvēle tiek atcerēta viņa pārlūkā.', 'latvijai-futura' )
+	);
+
 	/* Latvian national flag above the header */
 	$wp_customize->add_section(
 		'latvijai_header_flag',
@@ -237,3 +278,14 @@ add_action( 'customize_register', 'latvijai_customize_register' );
 function latvijai_sanitize_flag_height( $value ) {
 	return max( 4, min( 60, absint( $value ) ) );
 }
+
+/**
+ * Allow only the known colour schemes.
+ *
+ * @param mixed $value Raw value.
+ * @return string
+ */
+function latvijai_sanitize_color_scheme( $value ) {
+	return in_array( $value, array( 'dark', 'light', 'auto' ), true ) ? $value : 'dark';
+}
+
