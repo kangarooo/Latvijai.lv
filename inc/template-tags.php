@@ -67,6 +67,8 @@ function latvijai_defaults() {
 			'preloader_duration'   => '800',
 			'header_flag_enabled'  => '1',
 			'header_flag_height'   => '20',
+			'color_scheme'         => 'dark',
+			'theme_toggle_enabled' => '1',
 		);
 	}
 
@@ -534,6 +536,30 @@ function latvijai_header_flag() {
 		<span class="header_flag_0"></span>
 		<span class="header_flag_1"></span>
 	</div>
+	<?php
+}
+
+/**
+ * Site colour scheme chosen in the Customizer: dark, light or auto.
+ *
+ * @return string
+ */
+function latvijai_color_scheme() {
+	return latvijai_sanitize_color_scheme( latvijai_get( 'color_scheme' ) );
+}
+
+/**
+ * Light / dark switch button for the header.
+ */
+function latvijai_theme_toggle() {
+	if ( ! latvijai_get( 'theme_toggle_enabled' ) ) {
+		return;
+	}
+	?>
+	<button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="<?php esc_attr_e( 'Pārslēgt gaišo / tumšo režīmu', 'latvijai-futura' ); ?>" title="<?php esc_attr_e( 'Gaišais / tumšais režīms', 'latvijai-futura' ); ?>">
+		<?php latvijai_icon_e( 'sun', 'icon-sun' ); ?>
+		<?php latvijai_icon_e( 'moon', 'icon-moon' ); ?>
+	</button>
 	<?php
 }
 
