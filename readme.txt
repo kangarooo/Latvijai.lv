@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.7.0
+Stable tag: 1.8.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,12 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.8.0 =
+* Everything on the homepage is now edited in Elementor. Each section widget has its own fields: headings, texts, buttons and links, statistics, regions, ticker topics, project cards (with optional image), journal count and empty-state texts, spotlight letters and coordinates.
+* Customizer values are only the starting values for new widgets; once a page is saved in Elementor its own content is used.
+* Projects widget: show the latest projects (falls back to the cards entered in Elementor) or only the cards entered in Elementor.
+* The classic homepage without Elementor looks exactly the same as before.
 
 = 1.7.0 =
 * Elementor support. Every homepage section (Hero, Misija, Latvija, Projekti, Fokuss, Žurnāls, CTA) is now an Elementor widget in the "Latvijai Futura" category, so a page built in Elementor looks exactly like the theme homepage. Section text is still edited in the Customizer.

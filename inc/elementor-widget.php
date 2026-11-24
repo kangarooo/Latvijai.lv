@@ -107,37 +107,96 @@ class Latvijai_Section_Widget extends \Elementor\Widget_Base {
 	}
 
 	/**
-	 * Vadīklas: tikai norāde, kur labot saturu.
+	 * Vadīklas: visi sekcijas teksti, saites un saraksti (inc/front-sections.php).
 	 */
 	protected function register_controls() {
-		$this->start_controls_section(
-			'latvijai_info',
-			array(
-				'label' => __( 'Saturs', 'latvijai-futura' ),
-			)
+		$current = null;
+
+		foreach ( latvijai_section_fields( $this->latvijai_section ) as $key => $field ) {
+			$group = '' !== $field['group'] ? $field['group'] : __( 'Saturs', 'latvijai-futura' );
+
+			if ( $group !== $current ) {
+				if ( null !== $current ) {
+					$this->end_controls_section();
+				}
+				$this->start_controls_section(
+					'latvijai_group_' . substr( md5( $group ), 0, 8 ),
+					array( 'label' => $group )
+				);
+				$current = $group;
+			}
+
+			$this->add_control( $key, $this->latvijai_control_args( $field ) );
+		}
+
+		if ( null !== $current ) {
+			$this->end_controls_section();
+		}
+	}
+
+	/**
+	 * Lauka definīcija → Elementor vadīklas argumenti.
+	 *
+	 * @param array $field Lauks.
+	 * @return array
+	 */
+	protected function latvijai_control_args( $field ) {
+		$cm   = '\Elementor\Controls_Manager';
+		$args = array(
+			'label'   => $field['label'],
+			'default' => $field['default'],
 		);
 
-		$this->add_control(
-			'latvijai_note',
-			array(
-				'type'            => \Elementor\Controls_Manager::RAW_HTML,
-				'raw'             => sprintf(
-					/* translators: %s: saite uz Pielāgotāju. */
-					__( 'Šīs sekcijas tekstus un saites labo <a href="%s" target="_blank">Izskats → Pielāgot</a>. Sekciju var pārvietot, dublēt vai paslēpt šeit.', 'latvijai-futura' ),
-					esc_url( admin_url( 'customize.php' ) )
-				),
-				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
-			)
-		);
+		switch ( $field['type'] ) {
+			case 'textarea':
+				$args['type'] = $cm::TEXTAREA;
+				$args['rows'] = 4;
+				break;
+			case 'switch':
+				$args['type']         = $cm::SWITCHER;
+				$args['return_value'] = 'yes';
+				break;
+			case 'select':
+				$args['type']    = $cm::SELECT;
+				$args['options'] = $field['options'];
+				break;
+			case 'number':
+				$args['type'] = $cm::NUMBER;
+				$args['min']  = 1;
+				$args['max']  = 12;
+				break;
+			case 'media':
+				$args['type']    = $cm::MEDIA;
+				$args['default'] = array( 'url' => '', 'id' => '' );
+				break;
+			case 'repeater':
+				$repeater = new \Elementor\Repeater();
+				foreach ( $field['fields'] as $sub_key => $sub_field ) {
+					$repeater->add_control( $sub_key, $this->latvijai_control_args( $sub_field ) );
+				}
+				$args['type']   = $cm::REPEATER;
+				$args['fields'] = $repeater->get_controls();
+				if ( ! empty( $field['title'] ) ) {
+					$args['title_field'] = '{{{ ' . $field['title'] . ' }}}';
+				}
+				break;
+			default:
+				$args['type']        = $cm::TEXT;
+				$args['label_block'] = true;
+		}
 
-		$this->end_controls_section();
+		return $args;
 	}
 
 	/**
 	 * Izvade.
 	 */
 	protected function render() {
-		get_template_part( 'template-parts/front/' . $this->latvijai_section );
+		get_template_part(
+			'template-parts/front/' . $this->latvijai_section,
+			null,
+			array( 'settings' => $this->get_settings_for_display() )
+		);
 	}
 
 	/**
