@@ -89,8 +89,16 @@ function latvijai_customize_register( $wp_customize ) {
 	/* Hero */
 	$add_field( 'hero_eyebrow', __( 'Virsraksta uzraksts', 'latvijai-futura' ), 'latvijai_hero' );
 	$add_field( 'hero_title_1', __( 'Virsraksts — 1. rinda', 'latvijai-futura' ), 'latvijai_hero' );
-	$add_field( 'hero_title_2', __( 'Virsraksts — 2. rinda (kontūra)', 'latvijai-futura' ), 'latvijai_hero' );
+	$add_field( 'hero_title_2', __( 'Virsraksts — 2. rinda', 'latvijai-futura' ), 'latvijai_hero' );
 	$add_field( 'hero_title_3', __( 'Virsraksts — 3. rinda', 'latvijai-futura' ), 'latvijai_hero' );
+	$add_field(
+		'hero_flag_colours',
+		__( 'Virsraksts Latvijas karoga krāsās', 'latvijai-futura' ),
+		'latvijai_hero',
+		'checkbox',
+		'latvijai_sanitize_checkbox',
+		__( '1. un 3. rinda karmīnsarkana, 2. rinda balta — kā karogā.', 'latvijai-futura' )
+	);
 	$add_field( 'hero_text', __( 'Ievadteksts', 'latvijai-futura' ), 'latvijai_hero', 'textarea', 'sanitize_textarea_field' );
 	$add_field( 'hero_primary_label', __( 'Primārās pogas teksts', 'latvijai-futura' ), 'latvijai_hero' );
 	$add_field( 'hero_primary_url', __( 'Primārās pogas saite', 'latvijai-futura' ), 'latvijai_hero', 'url', 'esc_url_raw' );
