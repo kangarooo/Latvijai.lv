@@ -15,6 +15,7 @@ require get_template_directory() . '/inc/cpt-projects.php';
 require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/front-sections.php';
 require get_template_directory() . '/inc/elementor.php';
+require get_template_directory() . '/inc/elementor-native.php';
 
 /**
  * Theme setup.

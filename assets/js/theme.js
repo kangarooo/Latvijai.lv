@@ -333,6 +333,15 @@
 	 * Animated number counters
 	 * ------------------------------------------------------------------ */
 	function initCounters() {
+		// Elementor virsraksta logrīks: skaitlis ir .stat-number iekšējā elementā.
+		document.querySelectorAll('.stat-number:not([data-count]) .elementor-heading-title').forEach(function (node) {
+			var text = node.textContent.trim();
+			if (/^\d+$/.test(text) && !node.hasAttribute('data-count')) {
+				node.setAttribute('data-count', text);
+				node.textContent = '0';
+			}
+		});
+
 		var counters = document.querySelectorAll('[data-count]');
 		if (!counters.length) {
 			return;
@@ -537,7 +546,7 @@
 	 * Hero cursor glow
 	 * ------------------------------------------------------------------ */
 	function initHeroGlow() {
-		var hero = document.querySelector('[data-hero]');
+		var hero = document.querySelector('[data-hero]') || document.querySelector('.hero');
 		if (!hero || reduceMotion || !finePointer) {
 			return;
 		}

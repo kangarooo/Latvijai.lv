@@ -104,6 +104,17 @@ function latvijai_elementor_defaults() {
 add_action( 'after_switch_theme', 'latvijai_elementor_defaults' );
 
 /**
+ * Tas pats arī pēc tēmas atjaunināšanas (bez pārslēgšanas) — vienreiz.
+ */
+function latvijai_elementor_defaults_once() {
+	if ( '1' !== get_option( 'latvijai_elementor_defaults' ) ) {
+		latvijai_elementor_defaults();
+		update_option( 'latvijai_elementor_defaults', '1' );
+	}
+}
+add_action( 'admin_init', 'latvijai_elementor_defaults_once' );
+
+/**
  * Logrīku kategorija.
  *
  * @param \Elementor\Elements_Manager $elements_manager Elementu pārvaldnieks.
@@ -153,51 +164,29 @@ function latvijai_elementor_editor_script() {
 add_action( 'elementor/frontend/after_enqueue_scripts', 'latvijai_elementor_editor_script' );
 
 /**
- * Elementor datu struktūra, kas atkārto tēmas sākumlapu: viens pilna platuma
- * konteiners ar visiem sekciju logrīkiem.
+ * Stils sākumlapai no Elementor pamatelementiem (pēc Elementor stiliem).
+ */
+function latvijai_elementor_native_style() {
+	if ( ! latvijai_has_elementor() ) {
+		return;
+	}
+	wp_enqueue_style(
+		'latvijai-elementor-native',
+		get_template_directory_uri() . '/assets/css/elementor-native.css',
+		array( 'latvijai-theme', 'elementor-frontend' ),
+		wp_get_theme( get_template() )->get( 'Version' )
+	);
+}
+add_action( 'elementor/frontend/after_enqueue_styles', 'latvijai_elementor_native_style' );
+
+/**
+ * Elementor dati jaunai sākumlapai: Elementor pamatelementi ar pašreizējo saturu
+ * (inc/elementor-native.php).
  *
  * @return array
  */
 function latvijai_elementor_front_page_data() {
-	$zero = array(
-		'unit'     => 'px',
-		'top'      => '0',
-		'right'    => '0',
-		'bottom'   => '0',
-		'left'     => '0',
-		'isLinked' => true,
-	);
-
-	$widgets = array();
-	foreach ( array_keys( latvijai_front_sections() ) as $slug ) {
-		$widgets[] = array(
-			'id'         => substr( md5( 'latvijai-' . $slug ), 0, 7 ),
-			'elType'     => 'widget',
-			'widgetType' => 'latvijai-' . $slug,
-			'settings'   => array(),
-			'elements'   => array(),
-		);
-	}
-
-	return array(
-		array(
-			'id'       => substr( md5( 'latvijai-front' ), 0, 7 ),
-			'elType'   => 'container',
-			'isInner'  => false,
-			'settings' => array(
-				'content_width' => 'full',
-				'flex_gap'      => array(
-					'column'   => '0',
-					'row'      => '0',
-					'unit'     => 'px',
-					'isLinked' => true,
-				),
-				'padding'       => $zero,
-				'margin'        => $zero,
-			),
-			'elements' => $widgets,
-		),
-	);
+	return latvijai_elementor_native_page_data();
 }
 
 /**
