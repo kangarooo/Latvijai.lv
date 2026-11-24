@@ -4419,3 +4419,43 @@ body.nav-open .site-header {
 	opacity: 1;
 	transform: none;
 }
+
+/* --------------------------------------------------------------------------
+   Latvijas karoga peles kursors
+   Parastais kursors ir bultiņa karoga krāsās (karmīns–balts–karmīns, 2:1:2);
+   uz saitēm un pogām tas kļūst par karogu mastā, lai joprojām būtu redzams,
+   ka elementu var klikšķināt. Teksta laukos paliek parastais teksta kursors.
+   Tikai ierīcēm ar peli (skārienekrāniem kursora nav).
+   -------------------------------------------------------------------------- */
+@media (pointer: fine) {
+	:root,
+	:root body {
+		cursor: url("../img/cursor-flag.svg") 3 2, auto;
+	}
+
+	:root a[href],
+	:root button:not(:disabled),
+	:root [role="button"],
+	:root label[for],
+	:root select,
+	:root summary,
+	:root input[type="submit"],
+	:root input[type="button"],
+	:root input[type="checkbox"],
+	:root input[type="radio"],
+	:root .elementor-button {
+		cursor: url("../img/cursor-flag-pointer.svg") 3 2, pointer;
+	}
+
+	:root input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+	:root textarea,
+	:root [contenteditable="true"] {
+		cursor: text;
+	}
+}
+
+/* Elementor redaktorā kursors paliek parastais. */
+.elementor-editor-active,
+.elementor-editor-active * {
+	cursor: revert;
+}
