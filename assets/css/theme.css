@@ -810,10 +810,11 @@ body.nav-open .site-header {
 	background: linear-gradient(
 		180deg,
 		var(--flag-red) 0 40%,
-		var(--text) 40% 60%,
+		var(--latvian-flag-white) 40% 60%,
 		var(--flag-red) 60% 100%
 	);
-	box-shadow: 0 0 14px rgba(225, 29, 63, 0.22);
+	/* Balto joslu vienmēr balta (arī gaišajā režīmā); smalka kontūra to izceļ uz gaiša fona. */
+	box-shadow: inset 0 0 0 1px rgba(var(--fg-rgb), 0.14), 0 0 14px rgba(225, 29, 63, 0.22);
 }
 
 .hero-title {
