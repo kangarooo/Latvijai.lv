@@ -1,0 +1,124 @@
+/**
+ * Sākumlapa no Elementor pamatelementiem.
+ *
+ * ĢENERĒTS ar tools/build-elementor-css.py — labo tools/elementor-native-base.css
+ * vai tēmas CSS un palaid skriptu vēlreiz.
+ */
+
+/* Elementor noklusējuma atstarpes izslēgtas — atstarpes nosaka tēma. */
+.latvijai-elementor {
+	--container-default-padding-top: 0px;
+	--container-default-padding-right: 0px;
+	--container-default-padding-bottom: 0px;
+	--container-default-padding-left: 0px;
+	--widgets-spacing: 0px;
+	--widgets-spacing-row: 0px;
+	--widgets-spacing-column: 0px;
+	--kit-widget-spacing: 0px;
+}
+
+:where(.latvijai-elementor) .e-con {
+	--width: auto;
+}
+
+/* Tēmas konteineri plūst kā parasti bloki, ja tēma nenosaka grid/flex
+   (vājāks par ģenerētajiem noteikumiem zemāk, stiprāks par Elementor). */
+#primary.latvijai-elementor :where(.e-con.lv-box) {
+	display: block;
+}
+
+/* Elementor komplekta atstarpes (20px) tēmas konteineros izslēgtas. */
+.latvijai-elementor .e-con.lv-box {
+	--row-gap: 0px;
+	--column-gap: 0px;
+	--gap: 0px;
+}
+
+/* Virsraksta logrīka iekšējais elements manto tēmas stilu no ietvara. */
+:where(.latvijai-elementor) .elementor-heading-title {
+	font-size: inherit;
+	font-weight: inherit;
+	font-style: inherit;
+	color: inherit;
+	letter-spacing: inherit;
+	text-transform: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	display: block;
+}
+
+/* Virsraksta (h1–h6) ietvaram tēmas virsrakstu fonts, lai ch/em mērvienības sakrīt. */
+:where(.latvijai-elementor .elementor-widget-heading:has(> :is(h1, h2, h3, h4, h5, h6))) {
+	font-family: var(--font-display);
+}
+
+:where(.latvijai-elementor) .elementor-heading-title a {
+	color: inherit;
+}
+
+/* Rindas, kurās virsraksta saturs ir vairāki elementi (piem. statuss + koordinātas). */
+#primary.latvijai-elementor .lv-contents > .elementor-heading-title {
+	display: contents;
+}
+
+/* Elementor pogas noklusējuma izskats izslēgts — to nosaka .btn / .link-arrow. */
+#primary.latvijai-elementor .elementor-widget-button .elementor-button {
+	background: none;
+	border-radius: 0;
+	padding: 0;
+	font: inherit;
+	line-height: inherit;
+	color: inherit;
+	fill: currentColor;
+	box-shadow: none;
+}
+
+#primary.latvijai-elementor .elementor-widget-button .elementor-button-content-wrapper {
+	gap: inherit;
+	align-items: center;
+}
+
+#primary.latvijai-elementor .elementor-widget-button {
+	display: flex;
+	width: auto;
+	max-width: 100%;
+}
+
+/* Saites sekcijas augšā neraujas (kā .section-top > .link-arrow tēmā). */
+#primary.latvijai-elementor .section-top > .elementor-widget-button {
+	flex-shrink: 0;
+}
+
+/* Tēmas daļas (lode, daļiņas, kartītes…) bez Elementor ietvara — tieši kā tēmā. */
+#primary.latvijai-elementor .elementor-widget[class*="elementor-widget-latvijai-part-"],
+#primary.latvijai-elementor .elementor-widget[class*="elementor-widget-latvijai-part-"] > .elementor-widget-container {
+	display: contents;
+}
+
+/* Pogu ikonas kā tēmā (bultas, sirds): klase lv-icon-up | lv-icon-right | lv-icon-heart uz pogas logrīka. */
+#primary.latvijai-elementor [class*="lv-icon-"] .elementor-button-content-wrapper::after {
+	content: "";
+	display: inline-block;
+	flex: none;
+	background-color: currentColor;
+	-webkit-mask: var(--lv-icon) center / contain no-repeat;
+	mask: var(--lv-icon) center / contain no-repeat;
+}
+
+#primary.latvijai-elementor .lv-icon-up {
+	--lv-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 17 17 7M8 7h9v9%22/%3E%3C/svg%3E");
+}
+
+#primary.latvijai-elementor .lv-icon-right {
+	--lv-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 12h16m-6-6 6 6-6 6%22/%3E%3C/svg%3E");
+}
+
+#primary.latvijai-elementor .lv-icon-heart {
+	--lv-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M20.8 5.6a5.4 5.4 0 0 0-7.7 0L12 6.7l-1.1-1.1a5.4 5.4 0 1 0-7.7 7.7L12 22l8.8-8.7a5.4 5.4 0 0 0 0-7.7Z%22/%3E%3C/svg%3E");
+}
+
+/* Redaktorā sekcijas vienmēr redzamas. */
+.elementor-editor-active .reveal {
+	opacity: 1;
+	transform: none;
+}

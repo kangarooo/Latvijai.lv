@@ -4396,10 +4396,3 @@ body.nav-open .site-header {
 	opacity: 1;
 	transform: none;
 }
-
-/* Standarta Elementor logrīki manto tēmas fontus un krāsas. */
-.latvijai-elementor .elementor-widget-text-editor,
-.latvijai-elementor .elementor-widget-heading .elementor-heading-title {
-	color: inherit;
-	font-family: inherit;
-}

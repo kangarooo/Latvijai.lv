@@ -1,0 +1,789 @@
+/**
+ * Sākumlapa no Elementor pamatelementiem.
+ *
+ * ĢENERĒTS ar tools/build-elementor-css.py — labo tools/elementor-native-base.css
+ * vai tēmas CSS un palaid skriptu vēlreiz.
+ */
+
+/* Elementor noklusējuma atstarpes izslēgtas — atstarpes nosaka tēma. */
+.latvijai-elementor {
+	--container-default-padding-top: 0px;
+	--container-default-padding-right: 0px;
+	--container-default-padding-bottom: 0px;
+	--container-default-padding-left: 0px;
+	--widgets-spacing: 0px;
+	--widgets-spacing-row: 0px;
+	--widgets-spacing-column: 0px;
+	--kit-widget-spacing: 0px;
+}
+
+:where(.latvijai-elementor) .e-con {
+	--width: auto;
+}
+
+/* Tēmas konteineri plūst kā parasti bloki, ja tēma nenosaka grid/flex
+   (vājāks par ģenerētajiem noteikumiem zemāk, stiprāks par Elementor). */
+#primary.latvijai-elementor :where(.e-con.lv-box) {
+	display: block;
+}
+
+/* Elementor komplekta atstarpes (20px) tēmas konteineros izslēgtas. */
+.latvijai-elementor .e-con.lv-box {
+	--row-gap: 0px;
+	--column-gap: 0px;
+	--gap: 0px;
+}
+
+/* Virsraksta logrīka iekšējais elements manto tēmas stilu no ietvara. */
+:where(.latvijai-elementor) .elementor-heading-title {
+	font-size: inherit;
+	font-weight: inherit;
+	font-style: inherit;
+	color: inherit;
+	letter-spacing: inherit;
+	text-transform: inherit;
+	line-height: inherit;
+	text-align: inherit;
+	display: block;
+}
+
+/* Virsraksta (h1–h6) ietvaram tēmas virsrakstu fonts, lai ch/em mērvienības sakrīt. */
+:where(.latvijai-elementor .elementor-widget-heading:has(> :is(h1, h2, h3, h4, h5, h6))) {
+	font-family: var(--font-display);
+}
+
+:where(.latvijai-elementor) .elementor-heading-title a {
+	color: inherit;
+}
+
+/* Rindas, kurās virsraksta saturs ir vairāki elementi (piem. statuss + koordinātas). */
+#primary.latvijai-elementor .lv-contents > .elementor-heading-title {
+	display: contents;
+}
+
+/* Elementor pogas noklusējuma izskats izslēgts — to nosaka .btn / .link-arrow. */
+#primary.latvijai-elementor .elementor-widget-button .elementor-button {
+	background: none;
+	border-radius: 0;
+	padding: 0;
+	font: inherit;
+	line-height: inherit;
+	color: inherit;
+	fill: currentColor;
+	box-shadow: none;
+}
+
+#primary.latvijai-elementor .elementor-widget-button .elementor-button-content-wrapper {
+	gap: inherit;
+	align-items: center;
+}
+
+#primary.latvijai-elementor .elementor-widget-button {
+	display: flex;
+	width: auto;
+	max-width: 100%;
+}
+
+/* Saites sekcijas augšā neraujas (kā .section-top > .link-arrow tēmā). */
+#primary.latvijai-elementor .section-top > .elementor-widget-button {
+	flex-shrink: 0;
+}
+
+/* Tēmas daļas (lode, daļiņas, kartītes…) bez Elementor ietvara — tieši kā tēmā. */
+#primary.latvijai-elementor .elementor-widget[class*="elementor-widget-latvijai-part-"],
+#primary.latvijai-elementor .elementor-widget[class*="elementor-widget-latvijai-part-"] > .elementor-widget-container {
+	display: contents;
+}
+
+/* Pogu ikonas kā tēmā (bultas, sirds): klase lv-icon-up | lv-icon-right | lv-icon-heart uz pogas logrīka. */
+#primary.latvijai-elementor [class*="lv-icon-"] .elementor-button-content-wrapper::after {
+	content: "";
+	display: inline-block;
+	flex: none;
+	background-color: currentColor;
+	-webkit-mask: var(--lv-icon) center / contain no-repeat;
+	mask: var(--lv-icon) center / contain no-repeat;
+}
+
+#primary.latvijai-elementor .lv-icon-up {
+	--lv-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7 17 17 7M8 7h9v9%22/%3E%3C/svg%3E");
+}
+
+#primary.latvijai-elementor .lv-icon-right {
+	--lv-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4 12h16m-6-6 6 6-6 6%22/%3E%3C/svg%3E");
+}
+
+#primary.latvijai-elementor .lv-icon-heart {
+	--lv-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M20.8 5.6a5.4 5.4 0 0 0-7.7 0L12 6.7l-1.1-1.1a5.4 5.4 0 1 0-7.7 7.7L12 22l8.8-8.7a5.4 5.4 0 0 0 0-7.7Z%22/%3E%3C/svg%3E");
+}
+
+/* Redaktorā sekcijas vienmēr redzamas. */
+.elementor-editor-active .reveal {
+	opacity: 1;
+	transform: none;
+}
+
+/* ---- Izkārtojums no tēmas CSS (ģenerēts) ---- */
+#primary.latvijai-elementor .container {
+	width: 100%;
+	max-width: var(--container);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+#primary.latvijai-elementor .section {
+	padding-block: clamp(4.5rem, 9vw, 8.5rem);
+}
+#primary.latvijai-elementor .section-head {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+	flex-direction: row;
+}
+#primary.latvijai-elementor .section-line {
+	flex: 1;
+	height: 1px;
+}
+#primary.latvijai-elementor .eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	margin: 0;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .eyebrow::before {
+	content: "";
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: var(--red);
+	box-shadow: 0 0 12px rgba(225, 29, 63, 0.9);
+	flex: none;
+}
+#primary.latvijai-elementor .section-title {
+	margin: 0;
+}
+#primary.latvijai-elementor .search-panel .eyebrow {
+	margin-bottom: 1.5rem;
+}
+#primary.latvijai-elementor .hero {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-height: 100svh;
+	padding-top: calc(var(--header-offset) + 2.5rem);
+	padding-bottom: 5rem;
+	overflow: hidden;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -3;
+	background: radial-gradient(ellipse 42% 55% at 78% 38%, rgba(225, 29, 63, 0.22), transparent 70%),
+		radial-gradient(ellipse 35% 38% at 12% 18%, rgba(124, 108, 255, 0.12), transparent 70%),
+		linear-gradient(180deg, rgba(var(--bg-rgb), 0.3), var(--bg) 92%);
+}
+#primary.latvijai-elementor .hero::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 22%;
+	z-index: -2;
+	background: linear-gradient(180deg, transparent, var(--bg));
+	pointer-events: none;
+}
+#primary.latvijai-elementor .hero-inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+	align-items: center;
+	gap: clamp(2rem, 4vw, 5rem);
+	position: relative;
+	z-index: 2;
+}
+#primary.latvijai-elementor .hero-copy {
+	min-width: 0;
+}
+#primary.latvijai-elementor .hero-eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	margin: 0 0 clamp(1.5rem, 3vw, 2.2rem);
+	padding: 0.62rem 1rem;
+	border-radius: 999px;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .hero-title {
+	margin: 0;
+}
+#primary.latvijai-elementor .hero-text {
+	max-width: 33rem;
+	margin: clamp(1.6rem, 3vw, 2.2rem) 0 0;
+}
+#primary.latvijai-elementor .hero-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.8rem;
+	margin-top: clamp(1.8rem, 3vw, 2.4rem);
+	flex-direction: row;
+}
+#primary.latvijai-elementor .hero-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.8rem 1.4rem;
+	margin-top: clamp(2rem, 4vw, 3rem);
+	padding-top: 1.4rem;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .hero-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .hero-status .pulse {
+	position: relative;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+}
+#primary.latvijai-elementor .hero-status .pulse::after {
+	content: "";
+	position: absolute;
+	inset: -4px;
+	border: 1px solid rgba(87, 227, 137, 0.45);
+	border-radius: 50%;
+	animation: pulse-dot 2.6s ease-out infinite;
+}
+#primary.latvijai-elementor .hero-coords {
+	margin-left: auto;
+}
+#primary.latvijai-elementor .mission {
+	position: relative;
+}
+#primary.latvijai-elementor .mission-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+	gap: clamp(2.5rem, 6vw, 6rem);
+	align-items: start;
+}
+#primary.latvijai-elementor .mission-title {
+	position: sticky;
+	top: calc(var(--header-offset) + 2rem);
+}
+#primary.latvijai-elementor .mission-title h2 {
+	margin: 0;
+}
+#primary.latvijai-elementor .mission-title .accent {
+	display: block;
+}
+#primary.latvijai-elementor .mission-body .lead {
+	margin-bottom: 1.5rem;
+}
+#primary.latvijai-elementor .mission-body > p:not(.lead) {
+	max-width: 34rem;
+}
+#primary.latvijai-elementor .mission-link {
+	margin-top: 2rem;
+}
+#primary.latvijai-elementor .stats-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-top: clamp(2.5rem, 4vw, 3.5rem);
+}
+#primary.latvijai-elementor .stat {
+	padding: 1.65rem 0 1.45rem;
+}
+#primary.latvijai-elementor .stat:nth-child(odd) {
+	padding-right: 1.5rem;
+}
+#primary.latvijai-elementor .stat:nth-child(even) {
+	padding-left: 1.5rem;
+}
+#primary.latvijai-elementor .stat-number {
+	display: block;
+}
+#primary.latvijai-elementor .stat-label {
+	display: block;
+	margin-top: 0.7rem;
+}
+#primary.latvijai-elementor .latvia {
+	position: relative;
+}
+#primary.latvijai-elementor .latvia-panel {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+}
+#primary.latvijai-elementor .latvia-panel::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: repeating-linear-gradient(45deg, transparent 0 15px, rgba(var(--fg-rgb), 0.045) 15px 16px),
+		repeating-linear-gradient(-45deg, transparent 0 15px, rgba(225, 29, 63, 0.11) 15px 16px);
+	-webkit-mask-image: radial-gradient(ellipse 78% 100% at 86% 48%, #000 0%, transparent 74%);
+	mask-image: radial-gradient(ellipse 78% 100% at 86% 48%, #000 0%, transparent 74%);
+	pointer-events: none;
+}
+#primary.latvijai-elementor .latvia-copy {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: clamp(2rem, 5vw, 4.5rem);
+}
+#primary.latvijai-elementor .latvia-copy .eyebrow {
+	margin-bottom: 1.2rem;
+}
+#primary.latvijai-elementor .latvia-title {
+	margin: 0 0 1.35rem;
+}
+#primary.latvijai-elementor .latvia-title span {
+	display: block;
+}
+#primary.latvijai-elementor .latvia-text {
+	max-width: 34rem;
+	margin-bottom: 1.8rem;
+}
+#primary.latvijai-elementor .latvia-meta {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.85rem 1.2rem;
+	width: 100%;
+	margin-top: auto;
+	padding-top: 1.35rem;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .latvia-meta .lv-flag {
+	width: 25px;
+	height: 15px;
+}
+#primary.latvijai-elementor .latvia-link {
+	margin-top: 1.7rem;
+}
+#primary.latvijai-elementor .latvia-regions {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: clamp(1.8rem, 3.6vw, 3.8rem);
+}
+#primary.latvijai-elementor .latvia-regions::before {
+	content: "";
+	position: absolute;
+	top: 1.8rem;
+	bottom: 1.8rem;
+	left: 0;
+	width: 1px;
+	background: linear-gradient(180deg, transparent, rgba(225, 29, 63, 0.8), transparent);
+}
+#primary.latvijai-elementor .latvia-region {
+	display: grid;
+	grid-template-columns: 2.3rem minmax(0, 1fr);
+	align-items: baseline;
+	gap: 1rem;
+	padding: 1rem 0;
+}
+#primary.latvijai-elementor .latvia-region-copy {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+	min-width: 0;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .latvia-region em {
+	text-align: right;
+}
+#primary.latvijai-elementor .section-top {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 2rem;
+	margin-bottom: clamp(2.5rem, 5vw, 4rem);
+	flex-direction: row;
+}
+#primary.latvijai-elementor .section-top .section-title {
+	max-width: 16ch;
+}
+#primary.latvijai-elementor .section-top .eyebrow {
+	margin-bottom: 1.2rem;
+}
+#primary.latvijai-elementor .spotlight {
+	position: relative;
+}
+#primary.latvijai-elementor .spotlight-panel {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+	min-height: 560px;
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+}
+#primary.latvijai-elementor .spotlight-panel::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: linear-gradient(rgba(var(--fg-rgb), 0.035) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(var(--fg-rgb), 0.035) 1px, transparent 1px);
+	background-size: 56px 56px;
+	-webkit-mask-image: radial-gradient(ellipse at 20% 80%, #000, transparent 70%);
+	mask-image: radial-gradient(ellipse at 20% 80%, #000, transparent 70%);
+	pointer-events: none;
+}
+#primary.latvijai-elementor .spotlight-content {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-width: 0;
+	padding: clamp(2.2rem, 5vw, 5rem);
+}
+#primary.latvijai-elementor .spotlight-content .eyebrow {
+	margin-bottom: 1.5rem;
+}
+#primary.latvijai-elementor .spotlight-title {
+	margin: 0 0 1.5rem;
+}
+#primary.latvijai-elementor .spotlight-title span {
+	display: block;
+}
+#primary.latvijai-elementor .spotlight-text {
+	max-width: 31rem;
+	margin: 0 0 2rem;
+}
+#primary.latvijai-elementor .spotlight-alphabet {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: clamp(1.6rem, 3vw, 2.4rem);
+	padding-top: 0.85rem;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .spotlight-alphabet-letters {
+	display: inline-flex;
+	gap: clamp(0.32rem, 0.8vw, 0.62rem);
+	flex-direction: row;
+}
+#primary.latvijai-elementor .journal {
+	position: relative;
+}
+#primary.latvijai-elementor .empty-state .eyebrow {
+	justify-content: center;
+	margin-bottom: 1rem;
+}
+#primary.latvijai-elementor .cta-section {
+	padding-block: clamp(2rem, 4vw, 4rem) clamp(5rem, 9vw, 8rem);
+}
+#primary.latvijai-elementor .cta-panel {
+	position: relative;
+	padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 4vw, 4rem);
+	border-radius: var(--radius-lg);
+	text-align: center;
+	overflow: hidden;
+}
+#primary.latvijai-elementor .cta-panel::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: linear-gradient(rgba(var(--fg-rgb), 0.035) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(var(--fg-rgb), 0.035) 1px, transparent 1px);
+	background-size: 62px 62px;
+	-webkit-mask-image: radial-gradient(ellipse at 50% 100%, #000, transparent 72%);
+	mask-image: radial-gradient(ellipse at 50% 100%, #000, transparent 72%);
+	pointer-events: none;
+}
+#primary.latvijai-elementor .cta-panel > * {
+	position: relative;
+	z-index: 1;
+}
+#primary.latvijai-elementor .cta-panel .eyebrow {
+	justify-content: center;
+	margin-bottom: 1.4rem;
+}
+#primary.latvijai-elementor .cta-title {
+	margin: 0 auto 1.4rem;
+}
+#primary.latvijai-elementor .cta-title .text-outline {
+	display: block;
+}
+#primary.latvijai-elementor .cta-text {
+	max-width: 42rem;
+	margin: 0 auto 2.2rem;
+}
+#primary.latvijai-elementor .cta-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.75rem;
+	flex-direction: row;
+}
+#primary.latvijai-elementor .cta-meta {
+	margin-top: 2.4rem;
+}
+#primary.latvijai-elementor .page-hero .eyebrow {
+	margin-bottom: 1.3rem;
+}
+#primary.latvijai-elementor .page-hero--center .eyebrow {
+	justify-content: center;
+}
+#primary.latvijai-elementor .project-support .cta-actions {
+	justify-content: flex-start;
+}
+#primary.latvijai-elementor .error-inner .eyebrow {
+	justify-content: center;
+}
+#primary.latvijai-elementor .search-results > .container > .search-form--inline {
+	margin-top: 1.5rem;
+}
+@media (max-width: 1180px) {
+	#primary.latvijai-elementor .hero-inner {
+		grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+	}
+}
+@media (max-width: 960px) {
+	#primary.latvijai-elementor .hero {
+		min-height: auto;
+		padding-top: calc(var(--header-offset) + 5rem);
+		padding-bottom: 4rem;
+	}
+	#primary.latvijai-elementor .hero-inner {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+	#primary.latvijai-elementor .hero-copy {
+		max-width: 720px;
+	}
+	#primary.latvijai-elementor .mission-grid {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+	#primary.latvijai-elementor .mission-title {
+		position: static;
+	}
+	#primary.latvijai-elementor .latvia-panel {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	#primary.latvijai-elementor .latvia-regions::before {
+		display: none;
+	}
+	#primary.latvijai-elementor .spotlight-panel {
+		grid-template-columns: minmax(0, 1fr);
+		min-height: 0;
+	}
+	#primary.latvijai-elementor .spotlight-content {
+		padding-bottom: 1.5rem;
+	}
+}
+@media (max-width: 720px) {
+	#primary.latvijai-elementor .hero-actions {
+		width: 100%;
+	}
+	#primary.latvijai-elementor .hero-coords {
+		margin-left: 0;
+	}
+	#primary.latvijai-elementor .section-top {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.2rem;
+	}
+	#primary.latvijai-elementor .section-top .section-title {
+		max-width: none;
+	}
+	#primary.latvijai-elementor .stats-grid {
+		grid-template-columns: 1fr;
+	}
+	#primary.latvijai-elementor .stat:nth-child(odd) {
+		padding-right: 0;
+	}
+	#primary.latvijai-elementor .stat:nth-child(even) {
+		padding-left: 0;
+	}
+}
+@media (max-width: 480px) {
+	#primary.latvijai-elementor .hero {
+		padding-top: calc(var(--header-offset) + 3.5rem);
+	}
+	#primary.latvijai-elementor .hero-actions {
+		flex-direction: column;
+	}
+	#primary.latvijai-elementor .latvia-copy {
+		padding: 1.65rem;
+	}
+	#primary.latvijai-elementor .latvia-regions {
+		padding: 0.75rem 1.65rem 1.15rem;
+	}
+	#primary.latvijai-elementor .latvia-region {
+		grid-template-columns: 2rem minmax(0, 1fr);
+		gap: 0.7rem;
+	}
+	#primary.latvijai-elementor .latvia-region-copy {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.3rem;
+	}
+	#primary.latvijai-elementor .latvia-region em {
+		text-align: left;
+	}
+	#primary.latvijai-elementor .spotlight-alphabet {
+		gap: 0.6rem;
+		padding-top: 0.7rem;
+	}
+	#primary.latvijai-elementor .spotlight-alphabet-letters {
+		gap: 0.28rem;
+	}
+	#primary.latvijai-elementor .hero-meta {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+}
+#primary.latvijai-elementor .latvijai-elementor:not(:has(.hero)) {
+	padding-top: var(--header-offset);
+}
+
+/* ---- Pogas: .btn / .link-arrow → Elementor poga (ģenerēts) ---- */
+#primary.latvijai-elementor .elementor-widget-button.lv-btn .elementor-button {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.7rem;
+	padding: 1rem 1.65rem;
+	border: 1px solid transparent;
+	border-radius: 999px;
+	background: transparent;
+	color: var(--text);
+	font-family: var(--font-mono);
+	font-size: 0.68rem;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	text-decoration: none;
+	white-space: nowrap;
+	overflow: hidden;
+	transition: transform 0.35s var(--ease),
+		background-color 0.35s var(--ease),
+		border-color 0.35s var(--ease),
+		color 0.35s var(--ease),
+		box-shadow 0.35s var(--ease);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn .elementor-button .elementor-button-content-wrapper::after {
+	width: 1rem;
+	height: 1rem;
+	flex: none;
+	transition: transform 0.35s var(--ease);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn .elementor-button:hover {
+	transform: translateY(-2px);
+	color: var(--text);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn .elementor-button:hover .elementor-button-content-wrapper::after {
+	transform: translate(2px, -2px);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-primary .elementor-button {
+	background: linear-gradient(135deg, var(--red-bright), var(--red) 55%, var(--red-deep));
+	color: #fff;
+	box-shadow: 0 10px 38px rgba(225, 29, 63, 0.24);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-primary .elementor-button::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -120%;
+	width: 55%;
+	height: 100%;
+	background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+	transform: skewX(-20deg);
+	transition: left 0.65s var(--ease);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-primary .elementor-button:hover::after {
+	left: 150%;
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-primary .elementor-button:hover {
+	color: #fff;
+	box-shadow: 0 16px 48px rgba(225, 29, 63, 0.38);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-ghost .elementor-button {
+	border-color: var(--line-strong);
+	background: rgba(var(--hi-rgb), 0.025);
+	backdrop-filter: blur(10px);
+	color: var(--text-soft);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-ghost .elementor-button:hover {
+	border-color: rgba(225, 29, 63, 0.6);
+	background: rgba(225, 29, 63, 0.08);
+	color: var(--text);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-light .elementor-button {
+	background: var(--text);
+	color: var(--bg);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-light .elementor-button:hover {
+	background: var(--text-max);
+	color: var(--bg);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-sm .elementor-button {
+	padding: 0.72rem 1.1rem;
+	font-size: 0.6rem;
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-lg .elementor-button {
+	padding: 1.15rem 2rem;
+	font-size: 0.72rem;
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-block .elementor-button {
+	width: 100%;
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-link-arrow .elementor-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	font-family: var(--font-mono);
+	font-size: 0.66rem;
+	font-weight: 500;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: var(--text);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-link-arrow .elementor-button .elementor-button-content-wrapper::after {
+	width: 0.95rem;
+	height: 0.95rem;
+	color: var(--red-bright);
+	transition: transform 0.3s var(--ease);
+}
+#primary.latvijai-elementor .elementor-widget-button.lv-link-arrow .elementor-button:hover .elementor-button-content-wrapper::after {
+	transform: translate(3px, -3px);
+}
+#primary.latvijai-elementor .header-actions .elementor-widget-button.lv-btn .elementor-button {
+	margin-left: 0.2rem;
+}
+#primary.latvijai-elementor .section-top > .elementor-widget-button.lv-link-arrow .elementor-button {
+	padding-bottom: 0.45rem;
+	white-space: nowrap;
+}
+@media (max-width: 720px) {
+	#primary.latvijai-elementor .hero-actions .elementor-widget-button.lv-btn .elementor-button {
+		flex: 1 1 auto;
+	}
+}
+@media (max-width: 480px) {
+	#primary.latvijai-elementor .hero-actions .elementor-widget-button.lv-btn .elementor-button {
+		width: 100%;
+	}
+	#primary.latvijai-elementor .cta-actions .elementor-widget-button.lv-btn .elementor-button {
+		width: 100%;
+	}
+}

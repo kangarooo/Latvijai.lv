@@ -112,7 +112,7 @@ class Latvijai_Section_Widget extends \Elementor\Widget_Base {
 	protected function register_controls() {
 		$current = null;
 
-		foreach ( latvijai_section_fields( $this->latvijai_section ) as $key => $field ) {
+		foreach ( $this->latvijai_fields() as $key => $field ) {
 			$group = '' !== $field['group'] ? $field['group'] : __( 'Saturs', 'latvijai-futura' );
 
 			if ( $group !== $current ) {
@@ -132,6 +132,15 @@ class Latvijai_Section_Widget extends \Elementor\Widget_Base {
 		if ( null !== $current ) {
 			$this->end_controls_section();
 		}
+	}
+
+	/**
+	 * Lauku definīcijas.
+	 *
+	 * @return array
+	 */
+	protected function latvijai_fields() {
+		return latvijai_section_fields( $this->latvijai_section );
 	}
 
 	/**
@@ -200,11 +209,98 @@ class Latvijai_Section_Widget extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Bez Elementor iekšējā ietvara (.elementor-widget-container) — izvade kā tēmā.
+	 *
+	 * @return bool
+	 */
+	public function has_widget_inner_wrapper(): bool {
+		return false;
+	}
+
+	/**
 	 * Sekcija ir dinamiska — Elementor to nekešo kā statisku HTML.
 	 *
 	 * @return bool
 	 */
 	protected function is_dynamic_content(): bool {
 		return true;
+	}
+}
+
+/**
+ * Maza tēmas daļa (dekoratīva vai dinamiska) Elementor lapai no pamatelementiem.
+ */
+class Latvijai_Part_Widget extends Latvijai_Section_Widget {
+
+	/**
+	 * Daļas slug.
+	 *
+	 * @var string
+	 */
+	protected $latvijai_part = 'hero-bg';
+
+	/**
+	 * Konstruktors.
+	 *
+	 * @param array      $data Elementa dati.
+	 * @param array|null $args Argumenti (latvijai_part, latvijai_label).
+	 */
+	public function __construct( $data = array(), $args = null ) {
+		$parts = latvijai_parts();
+
+		if ( ! empty( $args['latvijai_part'] ) ) {
+			$this->latvijai_part = $args['latvijai_part'];
+		} elseif ( ! empty( $data['widgetType'] ) && 0 === strpos( $data['widgetType'], 'latvijai-part-' ) ) {
+			$this->latvijai_part = substr( $data['widgetType'], strlen( 'latvijai-part-' ) );
+		}
+
+		$this->latvijai_section = isset( $parts[ $this->latvijai_part ] ) ? $parts[ $this->latvijai_part ][1] : 'hero';
+
+		$args = is_array( $args ) ? $args : array();
+		if ( empty( $args['latvijai_section'] ) ) {
+			$args['latvijai_section'] = $this->latvijai_section;
+			$args['latvijai_label']   = isset( $parts[ $this->latvijai_part ] ) ? $parts[ $this->latvijai_part ][0] : '';
+		}
+
+		parent::__construct( $data, $args );
+	}
+
+	/**
+	 * Logrīka nosaukums.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return 'latvijai-part-' . $this->latvijai_part;
+	}
+
+	/**
+	 * Ikona.
+	 *
+	 * @return string
+	 */
+	public function get_icon() {
+		$parts = latvijai_parts();
+		return isset( $parts[ $this->latvijai_part ][3] ) ? $parts[ $this->latvijai_part ][3] : 'eicon-flag';
+	}
+
+	/**
+	 * Lauku definīcijas.
+	 *
+	 * @return array
+	 */
+	protected function latvijai_fields() {
+		return latvijai_part_fields( $this->latvijai_part );
+	}
+
+	/**
+	 * Izvade.
+	 */
+	protected function render() {
+		get_template_part(
+			'template-parts/elementor/' . $this->latvijai_part,
+			null,
+			array( 'settings' => $this->get_settings_for_display() )
+		);
 	}
 }
