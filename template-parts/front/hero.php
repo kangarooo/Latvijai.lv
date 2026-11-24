@@ -2,7 +2,8 @@
 /**
  * Sākumlapas sekcija: Hero (virsraksts, daļiņas, tikers).
  *
- * Izmanto gan front-page.php, gan Elementor logrīks „Latvijai: Hero (virsraksts, daļiņas, tikers)”.
+ * Saturs nāk no Elementor logrīka „Latvijai: Hero (virsraksts, daļiņas, tikers)” iestatījumiem;
+ * bez Elementor — no noklusējumiem (inc/front-sections.php).
  *
  * @package Latvijai_Futura
  */
@@ -11,12 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$latvijai_ctx = latvijai_front_context();
-$hero_full = $latvijai_ctx['hero_full'];
-$hero_title_1 = $latvijai_ctx['hero_title_1'];
-$hero_title_2 = $latvijai_ctx['hero_title_2'];
-$hero_title_3 = $latvijai_ctx['hero_title_3'];
-$topics = $latvijai_ctx['topics'];
+$s = latvijai_section_settings( 'hero', $args ?? array() );
+
+$hero_title_1 = (string) $s['hero_title_1'];
+$hero_title_2 = (string) $s['hero_title_2'];
+$hero_title_3 = (string) $s['hero_title_3'];
+$hero_full    = trim( $hero_title_1 . ' ' . $hero_title_2 . ' ' . $hero_title_3 );
+$topics       = latvijai_lines( $s['ticker_topics'] );
 ?>
 <section class="hero" data-hero>
 	<canvas class="hero-canvas" data-particles aria-hidden="true"></canvas>
@@ -24,9 +26,9 @@ $topics = $latvijai_ctx['topics'];
 
 	<div class="container hero-inner">
 		<div class="hero-copy">
-			<p class="hero-eyebrow"><span class="lv-flag" aria-hidden="true"></span><?php echo esc_html( latvijai_get( 'hero_eyebrow' ) ); ?></p>
+			<p class="hero-eyebrow"><span class="lv-flag" aria-hidden="true"></span><?php echo esc_html( $s['hero_eyebrow'] ); ?></p>
 
-			<h1 class="hero-title<?php echo latvijai_get( 'hero_flag_colours' ) ? ' hero-title--flag' : ''; ?>" aria-label="<?php echo esc_attr( $hero_full ); ?>">
+			<h1 class="hero-title<?php echo ! empty( $s['hero_flag_colours'] ) ? ' hero-title--flag' : ''; ?>" aria-label="<?php echo esc_attr( $hero_full ); ?>">
 				<?php if ( '' !== $hero_title_1 ) : ?>
 					<span class="hero-line" aria-hidden="true"><span><?php echo esc_html( $hero_title_1 ); ?></span></span>
 				<?php endif; ?>
@@ -38,24 +40,24 @@ $topics = $latvijai_ctx['topics'];
 				<?php endif; ?>
 			</h1>
 
-			<p class="hero-text"><?php echo esc_html( latvijai_get( 'hero_text' ) ); ?></p>
+			<p class="hero-text"><?php echo esc_html( $s['hero_text'] ); ?></p>
 
 			<div class="hero-actions">
-				<a class="btn btn-primary btn-lg" href="<?php echo esc_url( latvijai_get( 'hero_primary_url' ) ); ?>">
-					<?php echo esc_html( latvijai_get( 'hero_primary_label' ) ); ?>
+				<a class="btn btn-primary btn-lg" href="<?php echo esc_url( $s['hero_primary_url'] ); ?>">
+					<?php echo esc_html( $s['hero_primary_label'] ); ?>
 					<?php latvijai_icon_e( 'arrow-up-right' ); ?>
 				</a>
-				<a class="btn btn-ghost btn-lg" href="<?php echo esc_url( latvijai_get( 'hero_secondary_url' ) ); ?>">
-					<?php echo esc_html( latvijai_get( 'hero_secondary_label' ) ); ?>
+				<a class="btn btn-ghost btn-lg" href="<?php echo esc_url( $s['hero_secondary_url'] ); ?>">
+					<?php echo esc_html( $s['hero_secondary_label'] ); ?>
 				</a>
 			</div>
 
 			<div class="hero-meta">
 				<span class="hero-status">
 					<span class="pulse" aria-hidden="true"></span>
-					<?php echo esc_html( latvijai_get( 'hero_status' ) ); ?>
+					<?php echo esc_html( $s['hero_status'] ); ?>
 				</span>
-				<span class="hero-coords"><?php echo esc_html( latvijai_get( 'contact_coords' ) ); ?></span>
+				<span class="hero-coords"><?php echo esc_html( $s['hero_coords'] ); ?></span>
 			</div>
 		</div>
 
@@ -64,12 +66,12 @@ $topics = $latvijai_ctx['topics'];
 				<span class="orb-ring orb-ring--1"></span>
 				<span class="orb-ring orb-ring--2"></span>
 				<span class="orb-ring orb-ring--3"></span>
-				<span class="orb-chip orb-chip--1"><?php esc_html_e( 'Kultūra', 'latvijai-futura' ); ?></span>
-				<span class="orb-chip orb-chip--2"><?php esc_html_e( 'Valoda', 'latvijai-futura' ); ?></span>
-				<span class="orb-chip orb-chip--3"><?php esc_html_e( 'Daba', 'latvijai-futura' ); ?></span>
-				<span class="orb-chip orb-chip--4"><?php esc_html_e( 'Novadi', 'latvijai-futura' ); ?></span>
+				<span class="orb-chip orb-chip--1"><?php echo esc_html( $s['orb_chip_1'] ); ?></span>
+				<span class="orb-chip orb-chip--2"><?php echo esc_html( $s['orb_chip_2'] ); ?></span>
+				<span class="orb-chip orb-chip--3"><?php echo esc_html( $s['orb_chip_3'] ); ?></span>
+				<span class="orb-chip orb-chip--4"><?php echo esc_html( $s['orb_chip_4'] ); ?></span>
 				<span class="orb-core">
-					<span class="orb-monogram">LV</span>
+					<span class="orb-monogram"><?php echo esc_html( $s['orb_monogram'] ); ?></span>
 				</span>
 				<span class="orb-triad">
 					<svg viewBox="0 0 220 220" fill="none" aria-hidden="true" focusable="false">
@@ -104,16 +106,17 @@ $topics = $latvijai_ctx['topics'];
 					</svg>
 				</span>
 			</div>
-			<span class="hero-readout"><?php esc_html_e( 'Latvijai.lv / Sabiedriskie projekti', 'latvijai-futura' ); ?></span>
+			<span class="hero-readout"><?php echo esc_html( $s['hero_readout'] ); ?></span>
 		</div>
 	</div>
 
 	<a class="scroll-cue" href="#misija">
-		<span><?php esc_html_e( 'Ritini', 'latvijai-futura' ); ?></span>
+		<span><?php echo esc_html( $s['scroll_label'] ); ?></span>
 		<span class="scroll-line" aria-hidden="true"></span>
 	</a>
 </section>
 
+<?php if ( ! empty( $s['ticker_enabled'] ) && $topics ) : ?>
 <div class="ticker" aria-hidden="true">
 	<div class="ticker-track">
 		<?php for ( $loop = 0; $loop < 2; $loop++ ) : ?>
@@ -126,3 +129,4 @@ $topics = $latvijai_ctx['topics'];
 		<?php endfor; ?>
 	</div>
 </div>
+<?php endif; ?>

@@ -26,6 +26,23 @@ $tone   = $tones[ $index % 3 ];
 $is_new = false;
 
 if ( is_array( $demo ) ) {
+	$demo = wp_parse_args(
+		$demo,
+		array(
+			'title'        => '',
+			'field'        => '',
+			'status'       => '',
+			'status_class' => 'active',
+			'location'     => '',
+			'excerpt'      => '',
+			'url'          => '',
+			'glyph'        => '',
+			'tone'         => $tone,
+			'image'        => null,
+			'sample'       => true,
+		)
+	);
+
 	$title        = $demo['title'];
 	$field        = $demo['field'];
 	$status       = $demo['status'];
@@ -33,10 +50,11 @@ if ( is_array( $demo ) ) {
 	$location     = $demo['location'];
 	$excerpt      = $demo['excerpt'];
 	$url          = $demo['url'];
-	$glyph        = $demo['glyph'];
-	$tone         = $demo['tone'];
-	$thumbnail    = '';
-	$is_new       = true;
+	$glyph        = '' !== $demo['glyph'] ? $demo['glyph'] : ( preg_match( '/^./u', $title, $match ) ? $match[0] : 'L' );
+	$tone         = in_array( $demo['tone'], $tones, true ) ? $demo['tone'] : $tone;
+	$image_id     = is_array( $demo['image'] ) && ! empty( $demo['image']['id'] ) ? (int) $demo['image']['id'] : 0;
+	$thumbnail    = $image_id ? wp_get_attachment_image( $image_id, 'latvijai-card', false, array( 'loading' => 'lazy' ) ) : '';
+	$is_new       = ! empty( $demo['sample'] );
 } else {
 	$post_id      = (int) $card_args['post_id'];
 	$project_meta = latvijai_project_meta( $post_id );
@@ -52,7 +70,7 @@ if ( is_array( $demo ) ) {
 	$glyph        = preg_match( '/^./u', $title, $match ) ? $match[0] : 'L';
 }
 
-$is_external = ( $is_new && preg_match( '#^https?://#i', $url ) );
+$is_external = ( is_array( $demo ) && preg_match( '#^https?://#i', $url ) && false === strpos( $url, home_url() ) );
 $link_attrs  = $is_external ? ' target="_blank" rel="noopener noreferrer"' : '';
 ?>
 <article class="project-card reveal tilt" style="--delay: <?php echo esc_attr( $index * 0.09 ); ?>s;">

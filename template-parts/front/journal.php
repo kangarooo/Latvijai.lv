@@ -2,7 +2,8 @@
 /**
  * Sākumlapas sekcija: Žurnāls.
  *
- * Izmanto gan front-page.php, gan Elementor logrīks „Latvijai: Žurnāls”.
+ * Saturs nāk no Elementor logrīka „Latvijai: Žurnāls” iestatījumiem;
+ * bez Elementor — no noklusējumiem (inc/front-sections.php).
  *
  * @package Latvijai_Futura
  */
@@ -11,20 +12,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$latvijai_ctx = latvijai_front_context();
-$journal_url = $latvijai_ctx['journal_url'];
+$s = latvijai_section_settings( 'journal', $args ?? array() );
 ?>
 <section id="zurnals" class="section journal">
 	<div class="container">
 		<div class="section-top">
 			<div class="reveal">
-				<span class="eyebrow"><span class="eyebrow-index">04</span> <?php esc_html_e( 'Žurnāls', 'latvijai-futura' ); ?></span>
-				<h2 class="section-title"><?php esc_html_e( 'Stāsti no', 'latvijai-futura' ); ?><br><span class="text-outline"><?php esc_html_e( 'Latvijas nākotnes.', 'latvijai-futura' ); ?></span></h2>
+				<span class="eyebrow"><span class="eyebrow-index"><?php echo esc_html( $s['eyebrow_index'] ); ?></span> <?php echo esc_html( $s['eyebrow'] ); ?></span>
+				<h2 class="section-title"><?php echo esc_html( $s['title'] ); ?><br><span class="text-outline"><?php echo esc_html( $s['title_outline'] ); ?></span></h2>
 			</div>
-			<a class="link-arrow" href="<?php echo esc_url( $journal_url ); ?>">
-				<?php esc_html_e( 'Visi ieraksti', 'latvijai-futura' ); ?>
-				<?php latvijai_icon_e( 'arrow-up-right' ); ?>
-			</a>
+			<?php if ( '' !== trim( (string) $s['link_label'] ) ) : ?>
+				<a class="link-arrow" href="<?php echo esc_url( $s['link_url'] ); ?>">
+					<?php echo esc_html( $s['link_label'] ); ?>
+					<?php latvijai_icon_e( 'arrow-up-right' ); ?>
+				</a>
+			<?php endif; ?>
 		</div>
 
 		<div class="journal-grid">
@@ -32,7 +34,7 @@ $journal_url = $latvijai_ctx['journal_url'];
 			$journal = new WP_Query(
 				array(
 					'post_type'           => 'post',
-					'posts_per_page'      => 3,
+					'posts_per_page'      => max( 1, min( 12, (int) $s['count'] ) ),
 					'ignore_sticky_posts' => true,
 					'no_found_rows'       => true,
 				)
@@ -56,9 +58,9 @@ $journal_url = $latvijai_ctx['journal_url'];
 			else :
 				?>
 				<div class="empty-state reveal" style="grid-column: 1 / -1;">
-					<p class="eyebrow"><?php esc_html_e( 'Tukšs signāls', 'latvijai-futura' ); ?></p>
-					<h2><?php esc_html_e( 'Pirmie stāsti jau ceļā.', 'latvijai-futura' ); ?></h2>
-					<p><?php esc_html_e( 'Žurnāls tiks atvērts pavisam drīz. Tikmēr pievienojies kustībai vai ieskaties projektos.', 'latvijai-futura' ); ?></p>
+					<p class="eyebrow"><?php echo esc_html( $s['empty_eyebrow'] ); ?></p>
+					<h2><?php echo esc_html( $s['empty_title'] ); ?></h2>
+					<p><?php echo esc_html( $s['empty_text'] ); ?></p>
 					<div class="empty-actions">
 						<a class="btn btn-primary" href="#pieteikties"><?php esc_html_e( 'Pievienoties', 'latvijai-futura' ); ?></a>
 						<a class="btn btn-ghost" href="#projekti"><?php esc_html_e( 'Projekti', 'latvijai-futura' ); ?></a>
