@@ -119,7 +119,7 @@ $demo_projects = array(
 			<div class="hero-copy">
 				<p class="hero-eyebrow"><span class="lv-flag" aria-hidden="true"></span><?php echo esc_html( latvijai_get( 'hero_eyebrow' ) ); ?></p>
 
-				<h1 class="hero-title" aria-label="<?php echo esc_attr( $hero_full ); ?>">
+				<h1 class="hero-title<?php echo latvijai_get( 'hero_flag_colours' ) ? ' hero-title--flag' : ''; ?>" aria-label="<?php echo esc_attr( $hero_full ); ?>">
 					<?php if ( '' !== $hero_title_1 ) : ?>
 						<span class="hero-line" aria-hidden="true"><span><?php echo esc_html( $hero_title_1 ); ?></span></span>
 					<?php endif; ?>

@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,11 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.6.1 =
+* The homepage headline "Būvējam Latviju nākotnei" is now in Latvian flag colours: carmine – white – carmine (Pantone 201 C), in both dark and light mode. In light mode the white line has a carmine outline so it stays visible.
+* New Customizer checkbox "Virsraksts Latvijas karoga krāsās" (on by default) to switch back to the previous white / outline style.
+* Fixed the long marks on Ā, Ē, Ū in the headline being cut off at the top.
 
 = 1.6.0 =
 * Added a light colour scheme. Customizer → Latvijai — sākumlapa → "Krāsu režīms": Tumšs (default), Gaišs, or Automātiski (follows the visitor's device setting).

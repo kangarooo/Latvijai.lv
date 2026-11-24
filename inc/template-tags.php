@@ -23,6 +23,7 @@ function latvijai_defaults() {
 			'hero_title_1'        => 'Būvējam',
 			'hero_title_2'        => 'Latviju',
 			'hero_title_3'        => 'nākotnei',
+			'hero_flag_colours'   => '1',
 			'hero_text'           => 'Vieta idejām, projektiem un cilvēkiem, kas dara Latviju stiprāku. No pirmās idejas līdz reālai iedarbībai — kopā.',
 			'hero_primary_label'  => 'Atklāt projektus',
 			'hero_primary_url'    => '#projekti',

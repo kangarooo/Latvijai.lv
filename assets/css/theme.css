@@ -836,6 +836,11 @@ body.nav-open .site-header {
 .hero-line {
 	display: block;
 	overflow: hidden;
+	/* Room above the capitals for Latvian diacritics (Ā, Ē, Ū…), which the
+	   tight line-height would otherwise clip; the negative margin keeps the
+	   original line spacing. */
+	margin-top: -0.16em;
+	padding-top: 0.16em;
 	padding-right: 0.06em;
 	padding-bottom: 0.02em;
 }
@@ -860,6 +865,46 @@ body.nav-open .site-header {
 .hero-line--outline > span {
 	color: transparent;
 	-webkit-text-stroke: 1.5px rgba(var(--fg-rgb), 0.62);
+}
+
+/* Headline in Latvian flag colours: carmine – white – carmine.
+   The carmine is the flag's Pantone 201 C. In light mode the white line gets a carmine outline so
+   the white stripe stays visible on the pale page. */
+.hero-title--flag .hero-line > span {
+	color: var(--latvian-flag-red);
+	-webkit-text-stroke: 0;
+}
+
+.hero-title--flag .hero-line--outline > span {
+	color: var(--latvian-flag-white);
+	-webkit-text-stroke: 0;
+}
+
+.hero-title--flag .hero-dot {
+	color: var(--latvian-flag-white);
+	text-shadow: 0 0 24px rgba(255, 255, 255, 0.45);
+}
+
+:root[data-theme="light"] .hero-title--flag .hero-line--outline > span {
+	-webkit-text-stroke: 2px var(--latvian-flag-red);
+	paint-order: stroke fill;
+}
+
+:root[data-theme="light"] .hero-title--flag .hero-dot {
+	color: var(--latvian-flag-red);
+	text-shadow: none;
+}
+
+@media (prefers-color-scheme: light) {
+	:root[data-theme="auto"] .hero-title--flag .hero-line--outline > span {
+		-webkit-text-stroke: 2px var(--latvian-flag-red);
+		paint-order: stroke fill;
+	}
+
+	:root[data-theme="auto"] .hero-title--flag .hero-dot {
+		color: var(--latvian-flag-red);
+		text-shadow: none;
+	}
 }
 
 .hero-dot {
