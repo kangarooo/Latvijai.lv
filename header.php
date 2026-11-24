@@ -48,6 +48,7 @@ if ( latvijai_get( 'preloader_enabled' ) ) :
 
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Pāriet uz saturu', 'latvijai-futura' ); ?></a>
 
+<?php if ( ! latvijai_elementor_location( 'header' ) ) : ?>
 <header id="masthead" class="site-header" data-header>
 	<?php latvijai_header_flag(); ?>
 	<div class="header-inner container">
@@ -95,6 +96,7 @@ if ( latvijai_get( 'preloader_enabled' ) ) :
 		</div>
 	</div>
 </header>
+<?php endif; ?>
 
 <?php get_template_part( 'template-parts/search-overlay' ); ?>
 <?php get_template_part( 'template-parts/mobile-panel' ); ?>
