@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.9.2
+Stable tag: 1.9.3
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,9 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.9.3 =
+* Light mode: regular pages (for example Ziedo) are readable again. Page text followed fixed dark-mode colours from theme.json and stayed near-white on the light background; it now uses the theme's light/dark colour tokens, and links in page content use a deeper red in light mode.
 
 = 1.9.2 =
 * Light mode: the small Latvian flag icons (hero "Sabiedriskie projekti · Latvija" and the Latvija section) now have a white middle stripe instead of a black one, with a faint outline so it stays visible on light backgrounds.
