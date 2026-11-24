@@ -211,16 +211,18 @@ function latvijai_elementor_native_page_data() {
 
 	// Hero.
 	$h     = latvijai_section_settings( 'hero' );
-	$lines = '';
+	// Atstarpes starp rindām, lai virsraksts lasās kā teikums (meklētāji, ekrāna lasītāji).
+	$lines = array();
 	if ( '' !== $h['hero_title_1'] ) {
-		$lines .= '<span class="hero-line"><span>' . $e( $h['hero_title_1'] ) . '</span></span>';
+		$lines[] = '<span class="hero-line"><span>' . $e( $h['hero_title_1'] ) . '</span></span>';
 	}
 	if ( '' !== $h['hero_title_2'] ) {
-		$lines .= '<span class="hero-line hero-line--outline"><span>' . $e( $h['hero_title_2'] ) . '</span></span>';
+		$lines[] = '<span class="hero-line hero-line--outline"><span>' . $e( $h['hero_title_2'] ) . '</span></span>';
 	}
 	if ( '' !== $h['hero_title_3'] ) {
-		$lines .= '<span class="hero-line"><span>' . $e( $h['hero_title_3'] ) . '<em class="hero-dot">.</em></span></span>';
+		$lines[] = '<span class="hero-line"><span>' . $e( $h['hero_title_3'] ) . '<em class="hero-dot">.</em></span></span>';
 	}
+	$lines = implode( ' ', $lines );
 
 	$hero = $b->box(
 		'hero',

@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,9 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.9.1 =
+* Elementor homepage: the hero headline lines are separated by spaces, so search engines and screen readers read "Būvējam Latviju nākotnei." instead of one joined word.
 
 = 1.9.0 =
 * The Elementor homepage is now built from Elementor's own elements: containers, Heading and Button widgets. Every heading, text, button and link is edited directly on the page; nothing is hidden in theme sections.
