@@ -14,6 +14,7 @@ $contact_email = latvijai_get( 'contact_email' );
 	</div><!-- #content -->
 </div><!-- #page -->
 
+<?php if ( ! latvijai_elementor_location( 'footer' ) ) : ?>
 <footer id="colophon" class="site-footer">
 	<div class="container">
 		<div class="footer-ornament" aria-hidden="true">
@@ -113,6 +114,7 @@ $contact_email = latvijai_get( 'contact_email' );
 		</div>
 	</div>
 </footer>
+<?php endif; ?>
 
 <button class="to-top" type="button" data-to-top aria-label="<?php esc_attr_e( 'Atgriezties uz augšu', 'latvijai-futura' ); ?>">
 	<?php latvijai_icon_e( 'arrow-up' ); ?>

@@ -13,6 +13,7 @@ require get_template_directory() . '/inc/icons.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/cpt-projects.php';
 require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/elementor.php';
 
 /**
  * Theme setup.

@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.6.1
+Stable tag: 1.7.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,14 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 1.7.0 =
+* Elementor support. Every homepage section (Hero, Misija, Latvija, Projekti, Fokuss, Žurnāls, CTA) is now an Elementor widget in the "Latvijai Futura" category, so a page built in Elementor looks exactly like the theme homepage. Section text is still edited in the Customizer.
+* One-click button "Izveidot Elementor sākumlapu" (in the dashboard / Themes notice when Elementor is active) creates a new Elementor homepage with all sections and opens it in the editor. Existing pages are not overwritten.
+* Pages and the homepage built with Elementor are shown full width, without the theme's page heading.
+* Elementor Pro Theme Builder header and footer locations are supported; without them the theme's own header and footer are used.
+* When the theme is activated, Elementor's default colours and fonts are turned off so widgets use the theme's styles.
+* Homepage sections moved to template-parts/front/ (the homepage output is unchanged).
 
 = 1.6.1 =
 * The homepage headline "Būvējam Latviju nākotnei" is now in Latvian flag colours: carmine – white – carmine (Pantone 201 C), in both dark and light mode. In light mode the white line has a carmine outline so it stays visible.

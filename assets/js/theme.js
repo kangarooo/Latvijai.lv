@@ -43,6 +43,17 @@
 		initPreloader();
 	});
 
+	// Elementor redaktors pārzīmē logrīkus — ļauj atkārtoti palaist animācijas.
+	window.LatvijaiFutura = {
+		refresh: function () {
+			initReveal();
+			initCounters();
+			initParticles();
+			initHeroGlow();
+			initTilt();
+		}
+	};
+
 	/* ------------------------------------------------------------------
 	 * Light / dark colour scheme switch
 	 * ------------------------------------------------------------------ */
