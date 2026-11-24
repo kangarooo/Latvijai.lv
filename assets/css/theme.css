@@ -2981,6 +2981,28 @@ body.nav-open .site-header {
 	text-decoration-color: currentColor;
 }
 
+/* The pale pink link is made for the dark background; on the light
+   background it uses the deeper light-mode red so it stays readable. */
+:root[data-theme="light"] .entry-content a {
+	color: var(--red);
+	text-decoration-color: rgba(200, 16, 46, 0.4);
+}
+
+:root[data-theme="light"] .entry-content a:hover {
+	color: var(--red-deep);
+}
+
+@media (prefers-color-scheme: light) {
+	:root[data-theme="auto"] .entry-content a {
+		color: var(--red);
+		text-decoration-color: rgba(200, 16, 46, 0.4);
+	}
+
+	:root[data-theme="auto"] .entry-content a:hover {
+		color: var(--red-deep);
+	}
+}
+
 .entry-content ul,
 .entry-content ol {
 	margin-bottom: 1.6rem;
