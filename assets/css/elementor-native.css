@@ -143,6 +143,7 @@
 #primary.latvijai-elementor .section-line {
 	flex: 1;
 	height: 1px;
+	background: linear-gradient(90deg, var(--line-strong), transparent) !important;
 }
 #primary.latvijai-elementor .eyebrow {
 	display: inline-flex;
@@ -182,7 +183,7 @@
 	inset: 0;
 	z-index: -3;
 	background: radial-gradient(ellipse 42% 55% at 78% 38%, rgba(225, 29, 63, 0.22), transparent 70%),
-		radial-gradient(ellipse 35% 38% at 12% 18%, rgba(124, 108, 255, 0.12), transparent 70%),
+		radial-gradient(ellipse 35% 38% at 12% 18%, rgba(227, 162, 63, 0.12), transparent 70%),
 		linear-gradient(180deg, rgba(var(--bg-rgb), 0.3), var(--bg) 92%);
 }
 #primary.latvijai-elementor .hero::after {
@@ -214,6 +215,7 @@
 	margin: 0 0 clamp(1.5rem, 3vw, 2.2rem);
 	padding: 0.62rem 1rem;
 	border-radius: 999px;
+	background: rgba(var(--hi-rgb), 0.03) !important;
 	flex-direction: row;
 }
 #primary.latvijai-elementor .hero-title {
@@ -250,6 +252,7 @@
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
+	background: #57e389 !important;
 }
 #primary.latvijai-elementor .hero-status .pulse::after {
 	content: "";
@@ -280,6 +283,8 @@
 }
 #primary.latvijai-elementor .mission-title .accent {
 	display: block;
+	background: linear-gradient(100deg, var(--red-bright), #ff7b8f 45%, var(--text) 105%) !important;
+	background-clip: text !important;
 }
 #primary.latvijai-elementor .mission-body .lead {
 	margin-bottom: 1.5rem;
@@ -319,6 +324,8 @@
 	display: grid;
 	grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
 	border-radius: var(--radius-lg);
+	background: radial-gradient(ellipse 80% 120% at 100% 0%, rgba(225, 29, 63, 0.14), transparent 60%),
+		linear-gradient(120deg, #10070c, #08080e 58%) !important;
 	overflow: hidden;
 }
 #primary.latvijai-elementor .latvia-panel::before {
@@ -376,6 +383,7 @@
 	flex-direction: column;
 	justify-content: center;
 	padding: clamp(1.8rem, 3.6vw, 3.8rem);
+	background: rgba(var(--shadow-rgb), 0.22) !important;
 }
 #primary.latvijai-elementor .latvia-regions::before {
 	content: "";
@@ -427,6 +435,8 @@
 	grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
 	min-height: 560px;
 	border-radius: var(--radius-lg);
+	background: radial-gradient(ellipse 60% 90% at 100% 50%, rgba(225, 29, 63, 0.16), transparent 70%),
+		linear-gradient(120deg, #12050a, #0a0a11 58%) !important;
 	overflow: hidden;
 }
 #primary.latvijai-elementor .spotlight-panel::before {
@@ -490,6 +500,9 @@
 	position: relative;
 	padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 4vw, 4rem);
 	border-radius: var(--radius-lg);
+	background: radial-gradient(ellipse 55% 80% at 50% 118%, rgba(225, 29, 63, 0.38), transparent 65%),
+		radial-gradient(ellipse 40% 60% at 85% 0%, rgba(227, 162, 63, 0.14), transparent 70%),
+		#0a0a11 !important;
 	text-align: center;
 	overflow: hidden;
 }

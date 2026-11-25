@@ -1,0 +1,367 @@
+/* ==========================================================================
+   Latvijai Futura 2.0 — kustība, kartītes un telefona pieskāriens
+   Ielādējas pēc theme.css (un pēc elementor-native.css, ja ir Elementor).
+
+   Principi:
+   - Saturs ir redzams uzreiz; vienīgā ienākšana ir varonim, vienreiz ielādē.
+   - Hover tikai ierīcēm ar peli; poga atbild uz piespiešanu (scale 0.97).
+   - Kartītes paceļas par 2px, attēls tuvinās 1.03 savā rāmī. Bez sasvēršanas.
+   - Visas kustības ar ease-out, 160–240 ms saskarnei; prefers-reduced-motion
+     visu aptur (style.css).
+   ========================================================================== */
+
+:root {
+	--ease-ui: cubic-bezier(0.23, 1, 0.32, 1);
+	--dur-press: 160ms;
+	--dur-hover: 220ms;
+}
+
+/* --------------------------------------------------------------------------
+   1. Varoņa ienākšana — vienreiz ielādē, secīgi
+   Virsraksta rindām animācija jau ir theme.css (hero-rise). Šeit pievienojas
+   pārējās daļas, lai varonis ienāk kā viena kustība, nevis trīs rindas.
+   -------------------------------------------------------------------------- */
+
+@keyframes lv-enter {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes lv-enter-visual {
+	from {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.js .hero-eyebrow,
+	.js .hero-text,
+	.js .hero-actions,
+	.js .hero-meta {
+		animation: lv-enter 0.7s var(--ease-ui) both;
+	}
+
+	.js .hero-eyebrow {
+		animation-delay: 0s;
+	}
+
+	.js .hero-text {
+		animation-delay: 0.42s;
+	}
+
+	.js .hero-actions {
+		animation-delay: 0.52s;
+	}
+
+	.js .hero-meta {
+		animation-delay: 0.64s;
+	}
+
+	.js .hero-visual {
+		animation: lv-enter-visual 1.1s var(--ease-ui) 0.18s both;
+	}
+
+	/* Kamēr rāda prelādētāju, ienākšana gaida (sākas, kad tas pazūd). */
+	.is-preloading .hero-eyebrow,
+	.is-preloading .hero-text,
+	.is-preloading .hero-actions,
+	.is-preloading .hero-meta,
+	.is-preloading .hero-visual,
+	.is-preloading .hero-line > span {
+		animation-play-state: paused;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   2. Pogas — atbild uz piespiešanu
+   -------------------------------------------------------------------------- */
+
+.btn,
+.elementor-widget-button .elementor-button,
+.header-cta,
+.theme-toggle,
+.search-toggle,
+.menu-toggle {
+	-webkit-user-select: none;
+	user-select: none;
+	touch-action: manipulation;
+}
+
+.btn:active,
+.elementor-widget-button .elementor-button:active,
+#primary.latvijai-elementor .elementor-widget.elementor-widget-button[class*="lv-btn"] .elementor-button:active,
+.header-cta:active,
+.theme-toggle:active,
+.search-toggle:active,
+.menu-toggle:active,
+.back-to-top:active {
+	transform: scale(0.97);
+	transition-duration: var(--dur-press);
+	transition-timing-function: var(--ease-ui);
+}
+
+/* --------------------------------------------------------------------------
+   3. Kartītes — 2px pacelšanās, attēls 1.03 rāmī, bez 3D sasvēršanas
+   -------------------------------------------------------------------------- */
+
+.project-card {
+	transform-style: flat;
+	transition:
+		border-color var(--dur-hover) var(--ease-ui),
+		box-shadow var(--dur-hover) var(--ease-ui),
+		transform var(--dur-hover) var(--ease-ui);
+}
+
+/* Gaismas plankums sekoja pelei sasvēršanas laikā; bez tās tas nav vajadzīgs. */
+.project-card::after {
+	display: none;
+}
+
+.post-card {
+	transition:
+		border-color var(--dur-hover) var(--ease-ui),
+		box-shadow var(--dur-hover) var(--ease-ui),
+		transform var(--dur-hover) var(--ease-ui);
+}
+
+.project-media img,
+.post-card-media img {
+	transition: transform 0.6s var(--ease-ui), filter 0.4s var(--ease-ui);
+}
+
+/* Hover tikai ierīcēm ar peli — telefonā tas "pielīp" pēc pieskāriena. */
+@media (hover: hover) and (pointer: fine) {
+	.project-card:hover,
+	.post-card:hover {
+		transform: translateY(-2px);
+	}
+
+	.project-card:hover .project-media img,
+	.post-card:hover .post-card-media img {
+		transform: scale(1.03);
+	}
+}
+
+@media not all and (hover: hover) {
+	.project-card:hover,
+	.post-card:hover {
+		transform: none;
+		box-shadow: none;
+		border-color: var(--line);
+	}
+
+	.project-card:hover .project-media img,
+	.post-card:hover .post-card-media img {
+		transform: none;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   4. Latviešu zīmes kartītēs bez fotogrāfijas
+   -------------------------------------------------------------------------- */
+
+.project-visual .lv-sign,
+.post-card-fallback .lv-sign {
+	position: relative;
+	z-index: 1;
+	width: clamp(5.5rem, 34%, 8.5rem);
+	height: auto;
+	stroke-width: 2.2;
+	opacity: 0.75;
+	transition:
+		transform 0.6s var(--ease-ui),
+		opacity 0.4s var(--ease-ui);
+}
+
+.project-visual--ember .lv-sign {
+	color: var(--red-bright);
+	filter: drop-shadow(0 0 18px rgba(255, 51, 88, 0.35));
+}
+
+.project-visual--ice .lv-sign {
+	color: var(--ice);
+	filter: drop-shadow(0 0 18px rgba(159, 232, 255, 0.3));
+}
+
+.project-visual--violet .lv-sign {
+	color: var(--violet);
+	filter: drop-shadow(0 0 18px rgba(227, 162, 63, 0.32));
+}
+
+.post-card-fallback .lv-sign {
+	width: clamp(4.5rem, 28%, 6.5rem);
+	color: rgba(var(--hi-rgb), 0.5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.project-card:hover .lv-sign,
+	.post-card:hover .lv-sign {
+		transform: scale(1.04);
+		opacity: 1;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   5. Saites — pasvītrojums ievelkas
+   -------------------------------------------------------------------------- */
+
+.entry-content a,
+.comment-content a {
+	text-decoration: none;
+	background-image: linear-gradient(currentColor, currentColor);
+	background-position: 0 100%;
+	background-repeat: no-repeat;
+	background-size: 100% 1px;
+	transition:
+		color var(--dur-hover) var(--ease-ui),
+		background-size var(--dur-hover) var(--ease-ui);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.entry-content a:hover,
+	.comment-content a:hover {
+		background-size: 100% 2px;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   6. Teksts
+   -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+.section-title,
+.mission-title,
+.latvia-title,
+.spotlight-title,
+.cta-title {
+	text-wrap: balance;
+}
+
+p,
+li,
+.lead {
+	text-wrap: pretty;
+}
+
+.stat-number,
+.header-clock,
+.hero-coords,
+.project-index,
+.post-card-index {
+	font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   7. Telefons — lai neizskatās pēc "mājaslapas pārlūkā"
+   -------------------------------------------------------------------------- */
+
+html {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+a,
+button,
+[role="button"],
+label {
+	touch-action: manipulation;
+}
+
+/* iOS tuvina lapu, ja ievades lauka burti ir mazāki par 16px. */
+@media (max-width: 782px) {
+	input:not([type="checkbox"]):not([type="radio"]),
+	select,
+	textarea {
+		font-size: max(16px, 1em);
+	}
+}
+
+/* Saturs zem "robiņa" ainavas režīmā. */
+@supports (padding: max(0px)) {
+	.site-header .container,
+	.site-footer .container {
+		padding-left: max(var(--gutter), env(safe-area-inset-left));
+		padding-right: max(var(--gutter), env(safe-area-inset-right));
+	}
+}
+
+/* Ritināšana uz enkuru neapstājas zem fiksētās galvenes. */
+html {
+	scroll-padding-top: calc(var(--header-offset) + 1rem);
+}
+
+/* --------------------------------------------------------------------------
+   8. Galvenā poga — balts teksts ar pietiekamu kontrastu (vismaz 4.5:1)
+   Gaišākais sarkanais (#ff3358) ar baltu tekstu bija tikai 3.6:1, tāpēc
+   gradients sākas no --red.
+   -------------------------------------------------------------------------- */
+
+.btn-primary,
+#primary.latvijai-elementor .elementor-widget-button.lv-btn-primary .elementor-button {
+	background: linear-gradient(135deg, var(--red), var(--red-deep));
+}
+
+/* --------------------------------------------------------------------------
+   9. Fokuss no klaviatūras — redzams uz visām saitēm un pogām
+   -------------------------------------------------------------------------- */
+
+.link-arrow:focus-visible,
+.elementor-button:focus-visible,
+.project-card-link:focus-visible,
+.post-card a:focus-visible,
+.icon-btn:focus-visible,
+.btn:focus-visible {
+	outline: 2px solid var(--red-bright);
+	outline-offset: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   10. Slīdošā tēmu josla apstājas, kad uz tās ir pele vai fokuss
+   -------------------------------------------------------------------------- */
+
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track {
+	animation-play-state: paused;
+}
+
+/* --------------------------------------------------------------------------
+   11. Šauri telefoni (līdz 374px) — galvene ietilpst ekrānā
+   Pie 320px izvēlnes poga bija ārpus ekrāna.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 374px) {
+	.header-inner {
+		gap: 0.75rem;
+	}
+
+	.brand {
+		gap: 0.55rem;
+	}
+
+	.brand-mark {
+		width: 30px;
+		height: 30px;
+	}
+
+	.brand-name {
+		font-size: 0.82rem;
+	}
+
+	.header-actions {
+		gap: 0.3rem;
+	}
+}

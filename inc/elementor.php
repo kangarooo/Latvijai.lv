@@ -176,6 +176,11 @@ function latvijai_elementor_native_style() {
 		array( 'latvijai-theme', 'elementor-frontend' ),
 		wp_get_theme( get_template() )->get( 'Version' )
 	);
+	// 2.0 slānis (v2.css) jāielādē pēc šī faila, lai tā noteikumi uzvar.
+	$v2 = wp_styles()->query( 'latvijai-v2', 'registered' );
+	if ( $v2 && ! in_array( 'latvijai-elementor-native', $v2->deps, true ) ) {
+		$v2->deps[] = 'latvijai-elementor-native';
+	}
 }
 add_action( 'elementor/frontend/after_enqueue_styles', 'latvijai_elementor_native_style' );
 

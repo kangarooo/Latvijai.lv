@@ -3,7 +3,7 @@ Contributors: latvijailv
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.10.0
+Stable tag: 2.0.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, block-styles, wide-blocks, editor-style, blog, portfolio, news
@@ -148,6 +148,17 @@ This theme is distributed in the hope that it will be useful, but without any wa
 https://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog ==
+
+= 2.0.0 =
+* Content is visible straight away: sections no longer stay hidden until a scroll animation reveals them. Only the homepage hero enters once on load, as one staggered motion (and waits for the preloader).
+* Statistics show their real numbers instead of counting up from 0.
+* Elementor homepage: the "Viena Latvija" and "Runā Latviski" panels get their dark backgrounds back. Elementor's "lazy load background images" option was removing them, which made their text unreadable in light mode.
+* Cards: the 3D tilt is replaced by a calm 2px lift on hover, and photos zoom 1.03 inside their frame. Hover effects only apply on devices with a mouse, so they no longer stick after a tap on phones. Buttons press in slightly when clicked.
+* Project and journal cards without a photo show a Latvian sign (Saule, Auseklis, Jumis, Māras līkloči) instead of a large letter.
+* Violet accent replaced by Baltic amber (dzintars), also in the block editor palette.
+* Phones: no grey flash on tap, no page zoom when typing in fields, content clear of the notch in landscape, and the browser bar follows light/dark mode.
+* Typography: balanced headline line breaks, tidier paragraph endings, even-width digits in numbers.
+* New file assets/css/v2.css holds these changes.
 
 = 1.10.0 =
 * Mouse pointer in the Latvian flag colours: an arrow in carmine–white–carmine, and a flag on a pole over links and buttons. Text fields keep the normal text cursor; touch screens and the Elementor editor are unaffected.

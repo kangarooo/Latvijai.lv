@@ -57,8 +57,8 @@
 				},
 				{
 					"slug": "violet",
-					"name": "Violet",
-					"color": "#7c6cff"
+					"name": "Dzintars",
+					"color": "#e3a23f"
 				}
 			],
 			"gradients": [
@@ -70,7 +70,7 @@
 				{
 					"slug": "aurora",
 					"name": "Aurora",
-					"gradient": "linear-gradient(120deg, #7c6cff 0%, #e11d3f 55%, #9fe8ff 100%)"
+					"gradient": "linear-gradient(120deg, #e3a23f 0%, #e11d3f 55%, #9fe8ff 100%)"
 				},
 				{
 					"slug": "obsidian",

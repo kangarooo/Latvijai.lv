@@ -32,7 +32,8 @@ $thumbnail = get_the_post_thumbnail( $post_id, 'latvijai-card', array( 'loading'
 		<?php if ( $thumbnail ) : ?>
 			<?php echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WordPress generated image markup. ?>
 		<?php else : ?>
-			<span class="post-card-fallback"><span aria-hidden="true"><?php echo esc_html( $glyph ); ?></span></span>
+			<?php $post_signs = array( 'jumis', 'saule', 'mara', 'auseklis' ); ?>
+			<span class="post-card-fallback"><?php echo latvijai_sign_svg( $post_signs[ $index % 4 ] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static SVG. ?></span>
 		<?php endif; ?>
 		<span class="post-card-index">Ž—<?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
 	</a>

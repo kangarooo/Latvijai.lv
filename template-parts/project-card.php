@@ -73,14 +73,22 @@ if ( is_array( $demo ) ) {
 $is_external = ( is_array( $demo ) && preg_match( '#^https?://#i', $url ) && false === strpos( $url, home_url() ) );
 $link_attrs  = $is_external ? ' target="_blank" rel="noopener noreferrer"' : '';
 ?>
-<article class="project-card reveal tilt" style="--delay: <?php echo esc_attr( $index * 0.09 ); ?>s;">
+<article class="project-card reveal" style="--delay: <?php echo esc_attr( $index * 0.09 ); ?>s;">
 	<a class="project-card-link" href="<?php echo esc_url( $url ); ?>"<?php echo $link_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static attribute string. ?>>
 		<div class="project-media">
 			<?php if ( $thumbnail ) : ?>
 				<?php echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WordPress generated image markup. ?>
 			<?php else : ?>
 				<div class="project-visual project-visual--<?php echo esc_attr( $tone ); ?>">
-					<span class="project-glyph" aria-hidden="true"><?php echo esc_html( $glyph ); ?></span>
+					<?php
+					// 2.0: lielā burta vietā latviešu zīme, pēc kartītes toņa.
+					$signs = array(
+						'ember'  => 'saule',
+						'ice'    => 'auseklis',
+						'violet' => 'jumis',
+					);
+					echo latvijai_sign_svg( $signs[ $tone ] ?? 'auseklis' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static SVG.
+					?>
 				</div>
 			<?php endif; ?>
 

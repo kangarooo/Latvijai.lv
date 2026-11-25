@@ -30,7 +30,7 @@ journal cta-section cta-panel cta-title cta-text cta-actions cta-meta text-outli
 
 LAYOUT = re.compile(r'^(display|position|inset|top|right|bottom|left|margin(-[a-z-]+)?|padding(-[a-z-]+)?|gap|row-gap|column-gap|'
                     r'grid(-[a-z-]+)?|width|max-width|min-width|height|min-height|max-height|flex(-[a-z-]+)?|'
-                    r'align-[a-z-]+|justify-[a-z-]+|place-[a-z-]+|order|overflow(-[xy])?|z-index|text-align|border-radius|transition)$')
+                    r'align-[a-z-]+|justify-[a-z-]+|place-[a-z-]+|order|overflow(-[xy])?|z-index|text-align|border-radius|transition|background(-[a-z]+)?)$')
 BUTTON = re.compile(r'\.(btn(?:-[a-z]+)?|link-arrow)\b((?::[a-z-]+(?:\([^)]*\))?)*)')
 ROOTISH = re.compile(r'^((?::root|html|body)(?:\[[^\]]*\]|\.[\w-]+|:[\w-]+(?:\([^)]*\))?)*)\s+')
 
@@ -110,6 +110,10 @@ def main():
                 if not ours:
                     continue
             ld = [(p, v) for p, v in d if LAYOUT.match(p)]
+            # Elementor "lazy load background images" uzliek background-image: none !important
+            # konteineriem no trešā uz leju, līdz savs skripts tos atzīmē — tēmas paneļiem
+            # tas nenotiek. Tāpēc tēmas foni šeit ir !important.
+            ld = [(p, v + ' !important' if p.startswith('background') and '!important' not in v else v) for p, v in ld]
             has_flex = any(p == 'display' and 'flex' in v for p, v in ld)
             if has_flex and not any(p in ('flex-direction', 'flex-flow') for p, _ in ld):
                 ld.append(('flex-direction', 'row'))

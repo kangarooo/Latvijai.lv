@@ -4,7 +4,7 @@ Theme URI: https://latvijai.lv
 Author: Latvijai.lv
 Author URI: https://latvijai.lv
 Description: Futūristiska, tumša WordPress tēma Latvijai.lv sabiedrisko projektu platformai. Kinētiska tipogrāfija, stikla paneļi, Latvijas karoga sarkanā akcents, projektu satura tips un pilnībā pielāgojama sākumlapa.
-Version: 1.10.0
+Version: 2.0.0
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 8.0
@@ -44,7 +44,7 @@ Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images
 	--red-deep: #8f1226;
 	--flag-red: #9e1b32;
 	--ice: #9fe8ff;
-	--violet: #7c6cff;
+	--violet: #e3a23f;
 	--amber: #ffb45c;
 	--font-display: "Unbounded", "Space Grotesk", system-ui, sans-serif;
 	--font-body: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
@@ -87,7 +87,7 @@ Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images
 	--red-bright: #e11d3f;
 	--red-deep: #8f1226;
 	--ice: #0b7493;
-	--violet: #5143d6;
+	--violet: #9a5800;
 	--amber: #a35d00;
 	--glow-red: 0 0 50px rgba(200, 16, 46, 0.16);
 	--preloader-default-bg: linear-gradient(135deg, #f6f3ee, #f3e4e6);
@@ -113,7 +113,7 @@ Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images
 		--red-bright: #e11d3f;
 		--red-deep: #8f1226;
 		--ice: #0b7493;
-		--violet: #5143d6;
+		--violet: #9a5800;
 		--amber: #a35d00;
 		--glow-red: 0 0 50px rgba(200, 16, 46, 0.16);
 		--preloader-default-bg: linear-gradient(135deg, #f6f3ee, #f3e4e6);
@@ -148,7 +148,7 @@ Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images
 	--red: #e11d3f;
 	--red-bright: #ff3358;
 	--ice: #9fe8ff;
-	--violet: #7c6cff;
+	--violet: #e3a23f;
 	--amber: #ffb45c;
 	color-scheme: dark;
 	color: var(--text);
@@ -179,7 +179,7 @@ Tags: dark, futuristic, custom-colors, custom-logo, custom-menu, featured-images
 		--red: #e11d3f;
 		--red-bright: #ff3358;
 		--ice: #9fe8ff;
-		--violet: #7c6cff;
+		--violet: #e3a23f;
 		--amber: #ffb45c;
 		color-scheme: dark;
 		color: var(--text);
@@ -237,7 +237,7 @@ body::after {
 	pointer-events: none;
 	background:
 		radial-gradient(ellipse 45% 38% at 82% 4%, rgba(225, 29, 63, 0.13), transparent 70%),
-		radial-gradient(ellipse 40% 35% at 8% 32%, rgba(124, 108, 255, 0.09), transparent 70%),
+		radial-gradient(ellipse 40% 35% at 8% 32%, rgba(227, 162, 63, 0.09), transparent 70%),
 		radial-gradient(ellipse 50% 40% at 50% 108%, rgba(225, 29, 63, 0.08), transparent 70%);
 }
 
@@ -807,20 +807,10 @@ label {
    08. Scroll reveal
    ========================================================================== */
 
-.js .reveal {
-	opacity: 0;
-	transform: translateY(26px);
-	transition:
-		opacity 0.9s var(--ease-out),
-		transform 0.9s var(--ease-out);
-	transition-delay: var(--delay, 0s);
-	will-change: opacity, transform;
-}
-
-.js .reveal.is-visible {
+/* 2.0: saturs vairs netiek slēpts līdz ritināšanai. Sākumlapas varonis
+   ienāk vienreiz ielādē (assets/css/v2.css); pārējais ir redzams uzreiz. */
+:where(.js .reveal) {
 	opacity: 1;
-	transform: none;
-	will-change: auto;
 }
 
 @keyframes spin {
