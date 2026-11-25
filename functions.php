@@ -97,6 +97,7 @@ function latvijai_assets() {
 
 	wp_enqueue_style( 'latvijai-base', get_stylesheet_uri(), $deps, $version );
 	wp_enqueue_style( 'latvijai-theme', get_template_directory_uri() . '/assets/css/theme.css', array( 'latvijai-base' ), $version );
+	wp_enqueue_style( 'latvijai-v2', get_template_directory_uri() . '/assets/css/v2.css', array( 'latvijai-theme' ), $version );
 
 	if ( latvijai_get( 'header_flag_enabled' ) ) {
 		wp_add_inline_style(
@@ -146,7 +147,14 @@ add_filter( 'wp_resource_hints', 'latvijai_resource_hints', 10, 2 );
  * Dark theme helpers in the document head.
  */
 function latvijai_head_meta() {
-	echo '<meta name="theme-color" content="#06060a" />' . "\n";
+	// Pārlūka joslas krāsa; theme.js to pārslēdz līdz ar gaišo/tumšo režīmu.
+	$scheme = latvijai_color_scheme();
+	if ( 'auto' === $scheme ) {
+		echo '<meta name="theme-color" content="#06060a" media="(prefers-color-scheme: dark)" />' . "\n";
+		echo '<meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)" />' . "\n";
+	} else {
+		echo '<meta name="theme-color" content="' . ( 'light' === $scheme ? '#f6f3ee' : '#06060a' ) . '" />' . "\n";
+	}
 
 	if ( ! has_site_icon() ) {
 		$favicon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070a'/%3E%3Cpath d='M32 8 56 32 32 56 8 32Z' fill='none' stroke='%23f4f1ea' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23e11d3f'/%3E%3C/svg%3E";

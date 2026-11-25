@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> class="no-js" data-theme="<?php echo esc_attr( latvijai_color_scheme() ); ?>">
+<html <?php language_attributes(); ?> class="no-js<?php echo latvijai_get( 'preloader_enabled' ) ? ' is-preloading' : ''; ?>" data-theme="<?php echo esc_attr( latvijai_color_scheme() ); ?>">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

@@ -46,7 +46,7 @@ $s = latvijai_section_settings( 'mission', $args ?? array() );
 							$is_numeric  = (bool) preg_match( '/^\d+$/', $stat_number );
 							?>
 							<div class="stat reveal" style="--delay: <?php echo esc_attr( $i * 0.08 ); ?>s;">
-								<span class="stat-number<?php echo $is_numeric ? '' : ' stat-number--accent'; ?>"<?php echo $is_numeric ? ' data-count="' . esc_attr( $stat_number ) . '"' : ''; ?>><?php echo esc_html( $is_numeric ? '0' : $stat_number ); ?></span>
+								<span class="stat-number<?php echo $is_numeric ? '' : ' stat-number--accent'; ?>"<?php echo $is_numeric ? ' data-count="' . esc_attr( $stat_number ) . '"' : ''; ?>><?php echo esc_html( $stat_number ); ?></span>
 								<span class="stat-label"><?php echo esc_html( $stat_label ); ?></span>
 							</div>
 						<?php endforeach; ?>

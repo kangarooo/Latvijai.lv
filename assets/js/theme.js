@@ -73,6 +73,10 @@
 		function sync() {
 			var isLight = effective() === 'light';
 			readFgRgb();
+			var meta = document.querySelector('meta[name="theme-color"]');
+			if (meta) {
+				meta.setAttribute('content', isLight ? '#f6f3ee' : '#06060a');
+			}
 			Array.prototype.forEach.call(buttons, function (button) {
 				button.setAttribute('aria-pressed', isLight ? 'true' : 'false');
 			});
@@ -297,35 +301,11 @@
 	 * Scroll reveals
 	 * ------------------------------------------------------------------ */
 	function initReveal() {
-		var items = document.querySelectorAll('.reveal');
-		if (!items.length) {
-			return;
-		}
-
-		if (reduceMotion || !('IntersectionObserver' in window)) {
-			items.forEach(function (item) {
-				item.classList.add('is-visible');
-			});
-			return;
-		}
-
-		var observer = new IntersectionObserver(
-			function (entries) {
-				entries.forEach(function (entry) {
-					if (entry.isIntersecting) {
-						entry.target.classList.add('is-visible');
-						observer.unobserve(entry.target);
-					}
-				});
-			},
-			{
-				threshold: 0.12,
-				rootMargin: '0px 0px -40px 0px'
-			}
-		);
-
-		items.forEach(function (item) {
-			observer.observe(item);
+		// 2.0: saturs ir redzams uzreiz. Ritināšanas parādīšanās noņemta — tā
+		// slēpa sekcijas, ja skripts nenostrādāja, un palēnināja lasīšanu.
+		// Klase .reveal paliek vecajam marķējumam un Elementor lapai.
+		document.querySelectorAll('.reveal').forEach(function (item) {
+			item.classList.add('is-visible');
 		});
 	}
 
@@ -333,65 +313,12 @@
 	 * Animated number counters
 	 * ------------------------------------------------------------------ */
 	function initCounters() {
-		// Elementor virsraksta logrīks: skaitlis ir .stat-number iekšējā elementā.
-		document.querySelectorAll('.stat-number:not([data-count]) .elementor-heading-title').forEach(function (node) {
-			var text = node.textContent.trim();
-			if (/^\d+$/.test(text) && !node.hasAttribute('data-count')) {
-				node.setAttribute('data-count', text);
-				node.textContent = '0';
-			}
-		});
-
-		var counters = document.querySelectorAll('[data-count]');
-		if (!counters.length) {
-			return;
-		}
-
-		var animate = function (node) {
-			var target = parseInt(node.getAttribute('data-count'), 10) || 0;
-			var duration = reduceMotion ? 0 : 1500;
-			var start = null;
-
-			if (!duration) {
+		// 2.0: skaitļi rāda īsto vērtību uzreiz (bez skaitīšanas no nulles).
+		document.querySelectorAll('[data-count]').forEach(function (node) {
+			var target = parseInt(node.getAttribute('data-count'), 10);
+			if (!isNaN(target)) {
 				node.textContent = target.toLocaleString('lv-LV');
-				return;
 			}
-
-			var step = function (timestamp) {
-				if (start === null) {
-					start = timestamp;
-				}
-				var progress = Math.min((timestamp - start) / duration, 1);
-				var eased = 1 - Math.pow(1 - progress, 3);
-				node.textContent = Math.round(target * eased).toLocaleString('lv-LV');
-
-				if (progress < 1) {
-					window.requestAnimationFrame(step);
-				}
-			};
-
-			window.requestAnimationFrame(step);
-		};
-
-		if (!('IntersectionObserver' in window)) {
-			counters.forEach(animate);
-			return;
-		}
-
-		var observer = new IntersectionObserver(
-			function (entries) {
-				entries.forEach(function (entry) {
-					if (entry.isIntersecting) {
-						animate(entry.target);
-						observer.unobserve(entry.target);
-					}
-				});
-			},
-			{ threshold: 0.5 }
-		);
-
-		counters.forEach(function (counter) {
-			observer.observe(counter);
 		});
 	}
 
@@ -579,48 +506,7 @@
 	 * Card tilt
 	 * ------------------------------------------------------------------ */
 	function initTilt() {
-		if (reduceMotion || !finePointer) {
-			return;
-		}
-
-		document.querySelectorAll('.tilt').forEach(function (card) {
-			var frame = null;
-			var event = null;
-
-			function apply() {
-				frame = null;
-				if (!event) {
-					return;
-				}
-				var rect = card.getBoundingClientRect();
-				var px = (event.clientX - rect.left) / rect.width;
-				var py = (event.clientY - rect.top) / rect.height;
-				var rx = (0.5 - py) * 7;
-				var ry = (px - 0.5) * 7;
-
-				card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-4px)';
-				card.style.setProperty('--gx', (px * 100).toFixed(1) + '%');
-				card.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
-			}
-
-			card.addEventListener('pointermove', function (pointerEvent) {
-				event = pointerEvent;
-				if (!frame) {
-					frame = window.requestAnimationFrame(apply);
-				}
-			});
-
-			card.addEventListener('pointerleave', function () {
-				event = null;
-				if (frame) {
-					window.cancelAnimationFrame(frame);
-					frame = null;
-				}
-				card.style.transform = '';
-				card.style.removeProperty('--gx');
-				card.style.removeProperty('--gy');
-			});
-		});
+		// 2.0: kartīšu 3D sasvēršana noņemta; kartītes hover laikā paceļas par 2px (CSS).
 	}
 
 	/* ------------------------------------------------------------------
@@ -732,6 +618,7 @@
 	function initPreloader() {
 		var preloader = document.getElementById('preloader');
 		if (!preloader) {
+			document.documentElement.classList.remove('is-preloading');
 			return;
 		}
 
@@ -755,6 +642,7 @@
 				return;
 			}
 			preloader.classList.add('is-hidden');
+			document.documentElement.classList.remove('is-preloading');
 			// Remove from DOM after transition
 			setTimeout(function () {
 				if (preloader.parentNode) {

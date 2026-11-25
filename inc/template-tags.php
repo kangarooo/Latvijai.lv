@@ -563,3 +563,31 @@ function latvijai_theme_toggle() {
 	</button>
 	<?php
 }
+
+/**
+ * Latviešu spēka zīme kā SVG (kartīšu attēla vietā, ja nav fotogrāfijas).
+ *
+ * Zīmes: auseklis, saule, jumis, mara (Māras līkloči). Zīmētas ar līnijām,
+ * krāsa no currentColor.
+ *
+ * @param string $name Zīmes nosaukums.
+ * @return string SVG marķējums.
+ */
+function latvijai_sign_svg( $name ) {
+	$paths = array(
+		// Auseklis: divi pārklāti kvadrāti (astoņstaru zvaigzne) ar iekšējo kvadrātu.
+		'auseklis' => '<path d="M30 30h60v60H30z"/><path d="M60 17.6 102.4 60 60 102.4 17.6 60z"/><path d="M47 47h26v26H47z"/><path d="M60 47v26M47 60h26"/>',
+		// Saule: aplis ar astoņiem stariem.
+		'saule'    => '<circle cx="60" cy="60" r="22"/><circle cx="60" cy="60" r="7"/><path d="M60 8v18M60 94v18M8 60h18M94 60h18M23.2 23.2l12.7 12.7M84.1 84.1l12.7 12.7M23.2 96.8l12.7-12.7M84.1 35.9l12.7-12.7"/>',
+		// Jumis: divas sakrustotas vārpas uz viena stiebra.
+		'jumis'    => '<path d="M60 110V44"/><path d="M60 44 34 18M60 44l26-26"/><path d="M60 68 34 42M60 68l26-26"/><path d="M60 92 40 72M60 92l20-20"/>',
+		// Māras līkloči: trīs zigzaga rindas.
+		'mara'     => '<path d="M10 36l12.5-14L35 36l12.5-14L60 36l12.5-14L85 36l12.5-14L110 36"/><path d="M10 67l12.5-14L35 67l12.5-14L60 67l12.5-14L85 67l12.5-14L110 67"/><path d="M10 98l12.5-14L35 98l12.5-14L60 98l12.5-14L85 98l12.5-14L110 98"/>',
+	);
+
+	if ( ! isset( $paths[ $name ] ) ) {
+		$name = 'auseklis';
+	}
+
+	return '<svg class="lv-sign lv-sign--' . esc_attr( $name ) . '" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $paths[ $name ] . '</svg>';
+}
